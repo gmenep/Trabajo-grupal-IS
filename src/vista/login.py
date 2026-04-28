@@ -1,7 +1,7 @@
-from src.vista.ui.UiLoginWindow import UiLoginWindow
+from ui.UiLoginWindow import UiLoginWindow
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
-class VentanaPrincipal(QMainWindow, UiLoginWindow):
+class LoginWindow(QMainWindow, UiLoginWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self) 
@@ -12,3 +12,13 @@ class VentanaPrincipal(QMainWindow, UiLoginWindow):
         u = self.input_user.text()
         p = self.input_pass.text()
         print(f"Usuario: {u}\nContraseña: {p}")
+
+
+if __name__ == "__main__":
+    import sys
+    app = QApplication(sys.argv)
+    
+    ventana = LoginWindow() 
+    ventana.show()
+    
+    sys.exit(app.exec_())
