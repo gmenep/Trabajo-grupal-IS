@@ -40,7 +40,7 @@ class UiLoginWindow(object):
         self.lbl_logo.setMinimumSize(QtCore.QSize(150, 50))
         self.lbl_logo.setMaximumSize(QtCore.QSize(150, 50))
         self.lbl_logo.setText("")
-        self.lbl_logo.setPixmap(QtGui.QPixmap("./images/labtrack.png"))
+        self.lbl_logo.setPixmap(QtGui.QPixmap("./src/vista/images/labtrack.png"))
         self.lbl_logo.setScaledContents(True)
         self.lbl_logo.setObjectName("lbl_logo")
         self.horizontalLayout.addWidget(self.lbl_logo)
