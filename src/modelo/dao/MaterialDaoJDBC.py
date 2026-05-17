@@ -23,7 +23,7 @@ class MaterialDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM materials WHERE material_id = ?"
 
-    def select(self) -> list[MaterialVo]:
+    def select(self):
         cursor = None
         materials = []
 
@@ -44,7 +44,7 @@ class MaterialDaoJDBC(Conexion):
 
         return materials
 
-    def select_by_id(self, material_id: int) -> MaterialVo | None:
+    def select_by_id(self, material_id):
         cursor = None
 
         try:
@@ -65,7 +65,7 @@ class MaterialDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, material: MaterialVo) -> int:
+    def insert(self, material):
         cursor = None
         rows = 0
 
@@ -92,7 +92,7 @@ class MaterialDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, material: MaterialVo) -> int:
+    def update(self, material):
         cursor = None
         rows = 0
 
@@ -119,7 +119,7 @@ class MaterialDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, material_id: int) -> int:
+    def delete(self, material_id):
         cursor = None
         rows = 0
 
@@ -138,10 +138,10 @@ class MaterialDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> MaterialVo:
+    def __map_row(self, row):
         material_id, specifications, formula, measure_unit = row
         return MaterialVo(material_id, specifications, formula, measure_unit)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

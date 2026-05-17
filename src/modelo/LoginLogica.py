@@ -1,5 +1,6 @@
 from src.modelo.dao.LoginDaoJDBC import LoginDaoJDBC
-from src.modelo.vo.LoginVo import LoginVO
+from src.modelo.PasswordLogica import PasswordLogica
+from src.modelo.vo.UsuarioVo import UsuarioVo
 
 
 class LoginLogica:
@@ -7,15 +8,44 @@ class LoginLogica:
     def __init__(self):
         self.__login_dao = LoginDaoJDBC()
 
-    def hacerLogin(self, user, password):
-        if user is None or user.strip() == "":
-            raise ValueError("El usuario no puede estar vacío")
+    def login(self, login_vo):
+        self.validar_login_vo(login_vo)
 
-        if password is None or password.strip() == "":
-            raise ValueError("La contraseña no puede estar vacía")
+        usuario = self.__login_dao.select_by_login(login_vo.user)
 
-        login_vo = LoginVO(user, password)
+        if usuario is None:
+            return None
 
-        resultado = self.__login_dao.check_login(login_vo)
+        password_correcta = PasswordLogica.verify_password(
+            login_vo.password,
+            usuario.pass_hash
+        )
 
-        return resultado
+        if not password_correcta:
+            return None
+
+        return self.usuario_sin_hash(usuario)
+
+    def hacerLogin(self, login_vo):
+        return self.login(login_vo)
+
+    def validar_login_vo(self, login_vo):
+        if login_vo is None:
+            raise ValueError("Los datos de login no pueden estar vacios")
+
+        if login_vo.user is None or login_vo.user.strip() == "":
+            raise ValueError("El usuario no puede estar vacio")
+
+        if login_vo.password is None or login_vo.password.strip() == "":
+            raise ValueError("La contrasena no puede estar vacia")
+
+    def usuario_sin_hash(self, usuario):
+        return UsuarioVo(
+            usuario.user_id,
+            usuario.login,
+            None,
+            usuario.full_name,
+            usuario.dni,
+            usuario.state,
+            usuario.studies
+        )

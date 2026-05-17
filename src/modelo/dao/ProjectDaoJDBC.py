@@ -23,7 +23,7 @@ class ProjectDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM projects WHERE project_id = ?"
 
-    def select(self) -> list[ProjectVo]:
+    def select(self):
         cursor = None
         projects = []
 
@@ -44,7 +44,7 @@ class ProjectDaoJDBC(Conexion):
 
         return projects
 
-    def select_by_id(self, project_id: int) -> ProjectVo | None:
+    def select_by_id(self, project_id):
         cursor = None
 
         try:
@@ -65,7 +65,7 @@ class ProjectDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, project: ProjectVo) -> int:
+    def insert(self, project):
         cursor = None
         rows = 0
 
@@ -94,7 +94,7 @@ class ProjectDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, project: ProjectVo) -> int:
+    def update(self, project):
         cursor = None
         rows = 0
 
@@ -123,7 +123,7 @@ class ProjectDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, project_id: int) -> int:
+    def delete(self, project_id):
         cursor = None
         rows = 0
 
@@ -142,10 +142,10 @@ class ProjectDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> ProjectVo:
+    def __map_row(self, row):
         project_id, title, description, start_date, end_date, state = row
         return ProjectVo(project_id, title, description, start_date, end_date, state)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

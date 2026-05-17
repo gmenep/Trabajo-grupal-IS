@@ -20,7 +20,7 @@ class AssetDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM assets WHERE asset_id = ?"
 
-    def select(self) -> list[AssetVo]:
+    def select(self):
         cursor = None
         assets = []
 
@@ -41,7 +41,7 @@ class AssetDaoJDBC(Conexion):
 
         return assets
 
-    def select_by_id(self, asset_id: int) -> AssetVo | None:
+    def select_by_id(self, asset_id):
         cursor = None
 
         try:
@@ -62,7 +62,7 @@ class AssetDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, asset: AssetVo) -> int:
+    def insert(self, asset):
         cursor = None
         rows = 0
 
@@ -84,7 +84,7 @@ class AssetDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, asset: AssetVo) -> int:
+    def update(self, asset):
         cursor = None
         rows = 0
 
@@ -106,7 +106,7 @@ class AssetDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, asset_id: int) -> int:
+    def delete(self, asset_id):
         cursor = None
         rows = 0
 
@@ -125,10 +125,10 @@ class AssetDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> AssetVo:
+    def __map_row(self, row):
         asset_id, name, asset_type, risk_level = row
         return AssetVo(asset_id, name, asset_type, risk_level)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

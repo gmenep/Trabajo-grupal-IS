@@ -1,13 +1,13 @@
 class LogVo:
     def __init__(
         self,
-        log_id: int | None,
+        log_id,
         timestamp,
-        event_type: str,
-        reference_id: int | None,
-        raw_data: str,
-        user_id: int | None
-    ) -> None:
+        event_type,
+        reference_id,
+        raw_data,
+        user_id
+    ):
         self.__log_id = log_id
         self.__timestamp = timestamp
         self.__event_type = event_type
@@ -16,25 +16,49 @@ class LogVo:
         self.__user_id = user_id
 
     @property
-    def log_id(self) -> int | None:
+    def log_id(self):
         return self.__log_id
+
+    @log_id.setter
+    def log_id(self, log_id):
+        self.__log_id = log_id
 
     @property
     def timestamp(self):
         return self.__timestamp
 
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        self.__timestamp = timestamp
+
     @property
-    def event_type(self) -> str:
+    def event_type(self):
         return self.__event_type
 
+    @event_type.setter
+    def event_type(self, event_type):
+        self.__event_type = event_type
+
     @property
-    def reference_id(self) -> int | None:
+    def reference_id(self):
         return self.__reference_id
 
-    @property
-    def raw_data(self) -> str:
-        return self.__raw_data
+    @reference_id.setter
+    def reference_id(self, reference_id):
+        self.__reference_id = reference_id
 
     @property
-    def user_id(self) -> int | None:
+    def raw_data(self):
+        return self.__raw_data
+
+    @raw_data.setter
+    def raw_data(self, raw_data):
+        self.__raw_data = raw_data
+
+    @property
+    def user_id(self):
         return self.__user_id
+
+    @user_id.setter
+    def user_id(self, user_id):
+        self.__user_id = user_id

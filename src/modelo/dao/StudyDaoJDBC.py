@@ -13,7 +13,7 @@ class StudyDaoJDBC(Conexion):
     SQL_UPDATE = "UPDATE studies SET project_id = ? WHERE study_id = ?"
     SQL_DELETE = "DELETE FROM studies WHERE study_id = ?"
 
-    def select(self) -> list[StudyVo]:
+    def select(self):
         cursor = None
         studies = []
 
@@ -34,7 +34,7 @@ class StudyDaoJDBC(Conexion):
 
         return studies
 
-    def select_by_id(self, study_id: int) -> StudyVo | None:
+    def select_by_id(self, study_id):
         cursor = None
 
         try:
@@ -55,7 +55,7 @@ class StudyDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, study: StudyVo) -> int:
+    def insert(self, study):
         cursor = None
         rows = 0
 
@@ -74,7 +74,7 @@ class StudyDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, study: StudyVo) -> int:
+    def update(self, study):
         cursor = None
         rows = 0
 
@@ -93,7 +93,7 @@ class StudyDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, study_id: int) -> int:
+    def delete(self, study_id):
         cursor = None
         rows = 0
 
@@ -112,10 +112,10 @@ class StudyDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> StudyVo:
+    def __map_row(self, row):
         study_id, project_id = row
         return StudyVo(study_id, project_id)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

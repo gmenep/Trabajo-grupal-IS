@@ -12,7 +12,7 @@ class LoginDaoJDBC(Conexion):
     def check_login(self, login_vo):
         return self.select_by_login(login_vo.user)
 
-    def select_by_login(self, login: str) -> UsuarioVo | None:
+    def select_by_login(self, login):
         cursor = None
 
         try:
@@ -33,6 +33,6 @@ class LoginDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def __map_row(self, row) -> UsuarioVo:
+    def __map_row(self, row):
         user_id, login, pass_hash, full_name, dni, state, studies = row
         return UsuarioVo(user_id, login, pass_hash, full_name, dni, state, studies)

@@ -28,7 +28,7 @@ class UsersDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM users WHERE user_id = ?"
 
-    def select(self) -> list[UsuarioVo]:
+    def select(self):
         cursor = None
         usuarios = []
 
@@ -49,7 +49,7 @@ class UsersDaoJDBC(Conexion):
 
         return usuarios
 
-    def select_by_id(self, user_id: int) -> UsuarioVo | None:
+    def select_by_id(self, user_id):
         cursor = None
 
         try:
@@ -70,7 +70,7 @@ class UsersDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def select_by_login(self, login: str) -> UsuarioVo | None:
+    def select_by_login(self, login):
         cursor = None
 
         try:
@@ -91,7 +91,7 @@ class UsersDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, usuario: UsuarioVo) -> int:
+    def insert(self, usuario):
         cursor = None
         rows = 0
 
@@ -121,7 +121,7 @@ class UsersDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, usuario: UsuarioVo) -> int:
+    def update(self, usuario):
         cursor = None
         rows = 0
 
@@ -151,7 +151,7 @@ class UsersDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, user_id: int) -> int:
+    def delete(self, user_id):
         cursor = None
         rows = 0
 
@@ -170,13 +170,13 @@ class UsersDaoJDBC(Conexion):
 
         return rows
 
-    def checkLogin(self, login_vo) -> UsuarioVo | None:
+    def checkLogin(self, login_vo):
         return self.select_by_login(login_vo.user)
 
-    def __map_row(self, row) -> UsuarioVo:
+    def __map_row(self, row):
         user_id, login, pass_hash, full_name, dni, state, studies = row
         return UsuarioVo(user_id, login, pass_hash, full_name, dni, state, studies)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

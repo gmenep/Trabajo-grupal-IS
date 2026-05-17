@@ -12,7 +12,7 @@ class UserRoleDaoJDBC(Conexion):
     SQL_INSERT = "INSERT INTO userrole(user_id, role_id) VALUES(?, ?)"
     SQL_DELETE = "DELETE FROM userrole WHERE user_id = ? AND role_id = ?"
 
-    def select(self) -> list[UserRoleVo]:
+    def select(self):
         cursor = None
         user_roles = []
 
@@ -34,7 +34,7 @@ class UserRoleDaoJDBC(Conexion):
         return user_roles
 
     # Clave primaria compuesta: user_id, role_id.
-    def select_by_id(self, user_id: int, role_id: int) -> UserRoleVo | None:
+    def select_by_id(self, user_id, role_id):
         cursor = None
 
         try:
@@ -55,7 +55,7 @@ class UserRoleDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, user_role: UserRoleVo) -> int:
+    def insert(self, user_role):
         cursor = None
         rows = 0
 
@@ -77,7 +77,7 @@ class UserRoleDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, user_id: int, role_id: int) -> int:
+    def delete(self, user_id, role_id):
         cursor = None
         rows = 0
 
@@ -96,10 +96,10 @@ class UserRoleDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> UserRoleVo:
+    def __map_row(self, row):
         user_id, role_id = row
         return UserRoleVo(user_id, role_id)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

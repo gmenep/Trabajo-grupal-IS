@@ -12,7 +12,7 @@ class BelongsToDaoJDBC(Conexion):
     SQL_INSERT = "INSERT INTO belongsto(project_id, user_id) VALUES(?, ?)"
     SQL_DELETE = "DELETE FROM belongsto WHERE project_id = ? AND user_id = ?"
 
-    def select(self) -> list[BelongsToVo]:
+    def select(self):
         cursor = None
         belongsto_items = []
 
@@ -34,7 +34,7 @@ class BelongsToDaoJDBC(Conexion):
         return belongsto_items
 
     # Clave primaria compuesta: project_id, user_id.
-    def select_by_id(self, project_id: int, user_id: int) -> BelongsToVo | None:
+    def select_by_id(self, project_id, user_id):
         cursor = None
 
         try:
@@ -55,7 +55,7 @@ class BelongsToDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, belongsto: BelongsToVo) -> int:
+    def insert(self, belongsto):
         cursor = None
         rows = 0
 
@@ -77,7 +77,7 @@ class BelongsToDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, project_id: int, user_id: int) -> int:
+    def delete(self, project_id, user_id):
         cursor = None
         rows = 0
 
@@ -96,10 +96,10 @@ class BelongsToDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> BelongsToVo:
+    def __map_row(self, row):
         project_id, user_id = row
         return BelongsToVo(project_id, user_id)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

@@ -20,7 +20,7 @@ class RoleDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM roles WHERE role_id = ?"
 
-    def select(self) -> list[RoleVo]:
+    def select(self):
         cursor = None
         roles = []
 
@@ -41,7 +41,7 @@ class RoleDaoJDBC(Conexion):
 
         return roles
 
-    def select_by_id(self, role_id: int) -> RoleVo | None:
+    def select_by_id(self, role_id):
         cursor = None
 
         try:
@@ -62,7 +62,7 @@ class RoleDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, role: RoleVo) -> int:
+    def insert(self, role):
         cursor = None
         rows = 0
 
@@ -84,7 +84,7 @@ class RoleDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, role: RoleVo) -> int:
+    def update(self, role):
         cursor = None
         rows = 0
 
@@ -106,7 +106,7 @@ class RoleDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, role_id: int) -> int:
+    def delete(self, role_id):
         cursor = None
         rows = 0
 
@@ -125,10 +125,10 @@ class RoleDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> RoleVo:
+    def __map_row(self, row):
         role_id, role_name, permisos = row
         return RoleVo(role_id, role_name, permisos)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

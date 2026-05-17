@@ -26,7 +26,7 @@ class StoredInDaoJDBC(Conexion):
         WHERE material_id = ? AND storage_id = ? AND batch_number = ?
     """
 
-    def select(self) -> list[StoredInVo]:
+    def select(self):
         cursor = None
         stored_items = []
 
@@ -50,10 +50,10 @@ class StoredInDaoJDBC(Conexion):
     # Clave primaria compuesta: material_id, storage_id, batch_number.
     def select_by_id(
         self,
-        material_id: int,
-        storage_id: int,
-        batch_number: str
-    ) -> StoredInVo | None:
+        material_id,
+        storage_id,
+        batch_number
+    ):
         cursor = None
 
         try:
@@ -77,7 +77,7 @@ class StoredInDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, stored_in: StoredInVo) -> int:
+    def insert(self, stored_in):
         cursor = None
         rows = 0
 
@@ -105,7 +105,7 @@ class StoredInDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, stored_in: StoredInVo) -> int:
+    def update(self, stored_in):
         cursor = None
         rows = 0
 
@@ -133,7 +133,7 @@ class StoredInDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, material_id: int, storage_id: int, batch_number: str) -> int:
+    def delete(self, material_id, storage_id, batch_number):
         cursor = None
         rows = 0
 
@@ -152,10 +152,10 @@ class StoredInDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> StoredInVo:
+    def __map_row(self, row):
         material_id, storage_id, quantity, batch_number, exp_date = row
         return StoredInVo(material_id, storage_id, quantity, batch_number, exp_date)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

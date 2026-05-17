@@ -20,7 +20,7 @@ class StorageDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM storage WHERE storage_id = ?"
 
-    def select(self) -> list[StorageVo]:
+    def select(self):
         cursor = None
         storage_items = []
 
@@ -41,7 +41,7 @@ class StorageDaoJDBC(Conexion):
 
         return storage_items
 
-    def select_by_id(self, storage_id: int) -> StorageVo | None:
+    def select_by_id(self, storage_id):
         cursor = None
 
         try:
@@ -62,7 +62,7 @@ class StorageDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, storage: StorageVo) -> int:
+    def insert(self, storage):
         cursor = None
         rows = 0
 
@@ -84,7 +84,7 @@ class StorageDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, storage: StorageVo) -> int:
+    def update(self, storage):
         cursor = None
         rows = 0
 
@@ -106,7 +106,7 @@ class StorageDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, storage_id: int) -> int:
+    def delete(self, storage_id):
         cursor = None
         rows = 0
 
@@ -125,10 +125,10 @@ class StorageDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> StorageVo:
+    def __map_row(self, row):
         storage_id, name, specifications = row
         return StorageVo(storage_id, name, specifications)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

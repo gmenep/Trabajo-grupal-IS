@@ -25,7 +25,7 @@ class MachineDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM machines WHERE machine_id = ?"
 
-    def select(self) -> list[MachineVo]:
+    def select(self):
         cursor = None
         machines = []
 
@@ -46,7 +46,7 @@ class MachineDaoJDBC(Conexion):
 
         return machines
 
-    def select_by_id(self, machine_id: int) -> MachineVo | None:
+    def select_by_id(self, machine_id):
         cursor = None
 
         try:
@@ -67,7 +67,7 @@ class MachineDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, machine: MachineVo) -> int:
+    def insert(self, machine):
         cursor = None
         rows = 0
 
@@ -95,7 +95,7 @@ class MachineDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, machine: MachineVo) -> int:
+    def update(self, machine):
         cursor = None
         rows = 0
 
@@ -123,7 +123,7 @@ class MachineDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, machine_id: int) -> int:
+    def delete(self, machine_id):
         cursor = None
         rows = 0
 
@@ -142,7 +142,7 @@ class MachineDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> MachineVo:
+    def __map_row(self, row):
         machine_id, state, last_revision_date, next_revision_date, description = row
         return MachineVo(
             machine_id,
@@ -152,6 +152,6 @@ class MachineDaoJDBC(Conexion):
             description
         )
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()

@@ -23,7 +23,7 @@ class LogDaoJDBC(Conexion):
     """
     SQL_DELETE = "DELETE FROM logs WHERE log_id = ?"
 
-    def select(self) -> list[LogVo]:
+    def select(self):
         cursor = None
         logs = []
 
@@ -44,7 +44,7 @@ class LogDaoJDBC(Conexion):
 
         return logs
 
-    def select_by_id(self, log_id: int) -> LogVo | None:
+    def select_by_id(self, log_id):
         cursor = None
 
         try:
@@ -65,7 +65,7 @@ class LogDaoJDBC(Conexion):
             if cursor is not None:
                 cursor.close()
 
-    def insert(self, log: LogVo) -> int:
+    def insert(self, log):
         cursor = None
         rows = 0
 
@@ -94,7 +94,7 @@ class LogDaoJDBC(Conexion):
 
         return rows
 
-    def update(self, log: LogVo) -> int:
+    def update(self, log):
         cursor = None
         rows = 0
 
@@ -123,7 +123,7 @@ class LogDaoJDBC(Conexion):
 
         return rows
 
-    def delete(self, log_id: int) -> int:
+    def delete(self, log_id):
         cursor = None
         rows = 0
 
@@ -142,10 +142,10 @@ class LogDaoJDBC(Conexion):
 
         return rows
 
-    def __map_row(self, row) -> LogVo:
+    def __map_row(self, row):
         log_id, timestamp, event_type, reference_id, raw_data, user_id = row
         return LogVo(log_id, timestamp, event_type, reference_id, raw_data, user_id)
 
-    def __commit(self) -> None:
+    def __commit(self):
         if self.conexion is not None:
             self.conexion.commit()
