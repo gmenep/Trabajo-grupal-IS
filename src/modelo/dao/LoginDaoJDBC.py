@@ -1,42 +1,38 @@
 from src.modelo.conexion.Conexion import Conexion
+from src.modelo.vo.UsuarioVo import UsuarioVo
 
 
 class LoginDaoJDBC(Conexion):
-    SQL_CHECK_LOGIN = "SELECT user_id, login, full_name, DNI, state, studies FROM users WHERE login = ? AND pass_hash = ?"
-    
+    SQL_SELECT_BY_LOGIN = """
+        SELECT user_id, login, pass_hash, full_name, DNI, state, studies
+        FROM users
+        WHERE login = ?
+    """
 
     def check_login(self, login_vo):
+        return self.select_by_login(login_vo.user)
+
+    def select_by_login(self, login: str) -> UsuarioVo | None:
         cursor = None
 
         try:
             cursor = self.getCursor()
-
-            cursor.execute(
-                self.SQL_CHECK_LOGIN,
-                (
-                    login_vo.user,
-                    login_vo.password
-                )
-            )
-
+            cursor.execute(self.SQL_SELECT_BY_LOGIN, (login,))
             row = cursor.fetchone()
 
             if row is None:
                 return None
 
-            return {
-                "user_id": row[0],
-                "login": row[1],
-                "full_name": row[2],
-                "DNI": row[3],
-                "state": row[4],
-                "studies": row[5]
-            }
+            return self.__map_row(row)
 
         except Exception as e:
-            print("Error comprobando login:", e)
+            print("Error seleccionando login:", e)
             return None
 
         finally:
             if cursor is not None:
                 cursor.close()
+
+    def __map_row(self, row) -> UsuarioVo:
+        user_id, login, pass_hash, full_name, dni, state, studies = row
+        return UsuarioVo(user_id, login, pass_hash, full_name, dni, state, studies)
