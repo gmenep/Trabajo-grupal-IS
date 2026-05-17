@@ -2,15 +2,14 @@ import bcrypt
 
 
 class PasswordLogica:
-    @staticmethod
-    def hash_password(password):
+
+    def hash_password(self, password):
         password_bytes = password.encode("utf-8")
         salt = bcrypt.gensalt()
         hashed_password = bcrypt.hashpw(password_bytes, salt)
         return hashed_password.decode("utf-8")
 
-    @staticmethod
-    def verify_password(password, stored_hash):
+    def verificar_password(self, password, stored_hash):
         if password is None or stored_hash is None:
             return False
 
@@ -24,9 +23,10 @@ class PasswordLogica:
 
 
 if __name__ == "__main__":
+    password_logica = PasswordLogica()
     password_plana = "changeme"
-    password_hash = PasswordLogica.hash_password(password_plana)
+    password_hash = password_logica.hash_password(password_plana)
 
     print("Hash generado:", password_hash)
-    print("Password correcta:", PasswordLogica.verify_password("changeme", password_hash))
-    print("Password incorrecta:", PasswordLogica.verify_password("otra", password_hash))
+    print("Password correcta:", password_logica.verificar_password("changeme", password_hash))
+    print("Password incorrecta:", password_logica.verificar_password("otra", password_hash))

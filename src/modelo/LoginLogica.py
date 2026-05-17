@@ -7,6 +7,7 @@ class LoginLogica:
 
     def __init__(self):
         self.__login_dao = LoginDaoJDBC()
+        self.__password_logica = PasswordLogica()
 
     def login(self, login_vo):
         self.validar_login_vo(login_vo)
@@ -16,7 +17,7 @@ class LoginLogica:
         if usuario is None:
             return None
 
-        password_correcta = PasswordLogica.verify_password(
+        password_correcta = self.__password_logica.verificar_password(
             login_vo.password,
             usuario.pass_hash
         )
