@@ -1,12 +1,24 @@
 import jaydebeapi
 
 class Conexion:
+    __instancia = None
+    __inicializado = False
+
+    def __new__(cls, *args, **kwargs):
+        if cls.__instancia is None:
+            cls.__instancia = super(Conexion, cls).__new__(cls)
+        return cls.__instancia
+
     def __init__(self, host='localhost', database='labtrack', user='root', password='changeme'):
+        if self.__inicializado:
+            return
+
         self._host = host
         self._database = database
         self._user = user
         self._password = password
         self.conexion = self.createConnection()
+        self.__inicializado = True
 
     def createConnection(self):
         try:
