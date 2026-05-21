@@ -1,4 +1,6 @@
 import jaydebeapi
+from pathlib import Path
+
 
 class Conexion:
     __instancia = None
@@ -23,21 +25,30 @@ class Conexion:
     def createConnection(self):
         try:
             jdbc_driver = "com.mysql.cj.jdbc.Driver"
-            jar_file = "C:/Users/guill/Documents/GitHub/Trabajo-grupal-IS/lib/mysql-connector-j-9.6.0.jar"
+
+            ruta_proyecto = Path(__file__).resolve().parents[3]
+            jar_file = ruta_proyecto / "lib" / "mysql-connector-j-9.6.0.jar"
+
             self.conexion = jaydebeapi.connect(
                 jdbc_driver,
-                f"jdbc:mysql://{self._host}/{self._database}",
+                f"jdbc:mysql://{self._host}:3306/{self._database}",
                 [self._user, self._password],
-                jar_file
+                str(jar_file)
             )
+
             return self.conexion
+
         except Exception as e:
             print("Error creando conexión:", e)
             return None
 
     def getCursor(self):
         if self.conexion is None:
-            self.createConnection()
+            self.conexion = self.createConnection()
+
+        if self.conexion is None:
+            raise Exception("No se pudo crear la conexión con la base de datos")
+
         return self.conexion.cursor()
 
     def closeConnection(self):
@@ -47,4 +58,3 @@ class Conexion:
                 self.conexion = None
         except Exception as e:
             print("Error cerrando conexión:", e)
-
