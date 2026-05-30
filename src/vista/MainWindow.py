@@ -1,0 +1,23 @@
+from src.vista.ui.UiMainWindow import UiMainWindow
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
+
+class LoginWindow(QMainWindow, UiMainWindow):
+    def __init__(self):
+        super().__init__()
+        
+        self.setupUi(self)
+        self.__controller = None
+
+    @property
+    def controlador(self):
+        return self.__controller
+
+    @controlador.setter
+    def controlador(self, controller):
+        self.__controller = controller
+
+    def setup(self, btn_list):
+        '''
+        Configura los botones de la ventana principal.
+        '''
+        pass
