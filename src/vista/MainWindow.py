@@ -18,6 +18,6 @@ class LoginWindow(QMainWindow, UiMainWindow):
 
     def setup(self, btn_list):
         '''
-        Configura los botones de la ventana principal.
+        Configura los botones que el usuario puede utilizar de la ventana principal y desactiva el resto.
         '''
         pass

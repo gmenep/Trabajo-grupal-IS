@@ -11,11 +11,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class UiMainWindow(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(908, 516)
+        MainWindow.resize(1009, 547)
         MainWindow.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        MainWindow.setFont(font)
+        MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -30,6 +34,7 @@ class UiMainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.side_bar)
         self.verticalLayout.setObjectName("verticalLayout")
         self.inventario_btn = QtWidgets.QPushButton(self.side_bar)
+        self.inventario_btn.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -39,6 +44,20 @@ class UiMainWindow(object):
         self.inventario_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.inventario_btn.setStyleSheet("QPushButton {\n"
 "    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_inventario.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
 "}")
         self.inventario_btn.setText("")
         self.inventario_btn.setObjectName("inventario_btn")
@@ -53,6 +72,20 @@ class UiMainWindow(object):
         self.maquinaria_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.maquinaria_btn.setStyleSheet("QPushButton {\n"
 "    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_maquinaria.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
 "}")
         self.maquinaria_btn.setText("")
         self.maquinaria_btn.setObjectName("maquinaria_btn")
@@ -67,6 +100,20 @@ class UiMainWindow(object):
         self.panel_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.panel_btn.setStyleSheet("QPushButton {\n"
 "    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_panel_colaborativo.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
 "}")
         self.panel_btn.setText("")
         self.panel_btn.setObjectName("panel_btn")
@@ -81,6 +128,20 @@ class UiMainWindow(object):
         self.proyecto_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.proyecto_btn.setStyleSheet("QPushButton {\n"
 "    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_proyecto.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
 "}")
         self.proyecto_btn.setText("")
         self.proyecto_btn.setObjectName("proyecto_btn")
@@ -96,6 +157,20 @@ class UiMainWindow(object):
         self.admin_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.admin_btn.setStyleSheet("QPushButton {\n"
 "    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_admin.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
 "}")
         self.admin_btn.setText("")
         self.admin_btn.setObjectName("admin_btn")
@@ -114,9 +189,9 @@ class UiMainWindow(object):
         self.inventario_page.setObjectName("inventario_page")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.inventario_page)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label = QtWidgets.QLabel(self.inventario_page)
-        self.label.setObjectName("label")
-        self.verticalLayout_2.addWidget(self.label, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.titulo = QtWidgets.QLabel(self.inventario_page)
+        self.titulo.setObjectName("titulo")
+        self.verticalLayout_2.addWidget(self.titulo, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.busqueda_widget = QtWidgets.QFrame(self.inventario_page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -149,51 +224,41 @@ class UiMainWindow(object):
         self.lineEdit.setMaximumSize(QtCore.QSize(800, 50))
         self.lineEdit.setObjectName("lineEdit")
         self.horizontalLayout_3.addWidget(self.lineEdit)
-        self.comboBox = QtWidgets.QComboBox(self.busqueda_widget)
-        self.comboBox.setObjectName("comboBox")
-        self.horizontalLayout_3.addWidget(self.comboBox)
+        self.almacen_box = QtWidgets.QComboBox(self.busqueda_widget)
+        self.almacen_box.setObjectName("almacen_box")
+        self.horizontalLayout_3.addWidget(self.almacen_box)
         spacerItem = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem)
         self.verticalLayout_2.addWidget(self.busqueda_widget, 0, QtCore.Qt.AlignTop)
-        self.tableWidget = QtWidgets.QTableWidget(self.inventario_page)
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(5)
-        self.tableWidget.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(4, item)
-        self.verticalLayout_2.addWidget(self.tableWidget)
+        self.tabla_inventario = QtWidgets.QTableWidget(self.inventario_page)
+        self.tabla_inventario.setObjectName("tabla_inventario")
+        self.tabla_inventario.setColumnCount(0)
+        self.tabla_inventario.setRowCount(0)
+        self.verticalLayout_2.addWidget(self.tabla_inventario)
         self.stackedWidget.addWidget(self.inventario_page)
         self.maquinaria_page = QtWidgets.QWidget()
         self.maquinaria_page.setObjectName("maquinaria_page")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.maquinaria_page)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label_2 = QtWidgets.QLabel(self.maquinaria_page)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout_3.addWidget(self.label_2, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.titulo_2 = QtWidgets.QLabel(self.maquinaria_page)
+        self.titulo_2.setObjectName("titulo_2")
+        self.verticalLayout_3.addWidget(self.titulo_2, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.frame = QtWidgets.QFrame(self.maquinaria_page)
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frame)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.bus_maquina_btn = QtWidgets.QPushButton(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy)
-        self.pushButton.setMinimumSize(QtCore.QSize(150, 0))
-        self.pushButton.setMaximumSize(QtCore.QSize(150, 50))
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_4.addWidget(self.pushButton)
+        sizePolicy.setHeightForWidth(self.bus_maquina_btn.sizePolicy().hasHeightForWidth())
+        self.bus_maquina_btn.setSizePolicy(sizePolicy)
+        self.bus_maquina_btn.setMinimumSize(QtCore.QSize(150, 0))
+        self.bus_maquina_btn.setMaximumSize(QtCore.QSize(150, 50))
+        self.bus_maquina_btn.setObjectName("bus_maquina_btn")
+        self.horizontalLayout_4.addWidget(self.bus_maquina_btn)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
@@ -204,22 +269,25 @@ class UiMainWindow(object):
         self.lineEdit_2.setMaximumSize(QtCore.QSize(800, 50))
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.horizontalLayout_4.addWidget(self.lineEdit_2)
+        self.almacen_box_2 = QtWidgets.QComboBox(self.frame)
+        self.almacen_box_2.setObjectName("almacen_box_2")
+        self.horizontalLayout_4.addWidget(self.almacen_box_2)
         spacerItem1 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem1)
         self.verticalLayout_3.addWidget(self.frame, 0, QtCore.Qt.AlignTop)
-        self.tableWidget_2 = QtWidgets.QTableWidget(self.maquinaria_page)
-        self.tableWidget_2.setObjectName("tableWidget_2")
-        self.tableWidget_2.setColumnCount(0)
-        self.tableWidget_2.setRowCount(0)
-        self.verticalLayout_3.addWidget(self.tableWidget_2)
+        self.tabla_maquinaria = QtWidgets.QTableWidget(self.maquinaria_page)
+        self.tabla_maquinaria.setObjectName("tabla_maquinaria")
+        self.tabla_maquinaria.setColumnCount(0)
+        self.tabla_maquinaria.setRowCount(0)
+        self.verticalLayout_3.addWidget(self.tabla_maquinaria)
         self.stackedWidget.addWidget(self.maquinaria_page)
         self.proyecto_page = QtWidgets.QWidget()
         self.proyecto_page.setObjectName("proyecto_page")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.proyecto_page)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.label_3 = QtWidgets.QLabel(self.proyecto_page)
-        self.label_3.setObjectName("label_3")
-        self.verticalLayout_5.addWidget(self.label_3, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.titulo_3 = QtWidgets.QLabel(self.proyecto_page)
+        self.titulo_3.setObjectName("titulo_3")
+        self.verticalLayout_5.addWidget(self.titulo_3, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.frame_3 = QtWidgets.QFrame(self.proyecto_page)
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -240,53 +308,74 @@ class UiMainWindow(object):
         self.frame_4.setObjectName("frame_4")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_4)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.pushButton_3 = QtWidgets.QPushButton(self.frame_4)
+        self.subtitulo = QtWidgets.QLabel(self.frame_4)
+        self.subtitulo.setObjectName("subtitulo")
+        self.verticalLayout_4.addWidget(self.subtitulo, 0, QtCore.Qt.AlignHCenter)
+        self.sol_materiales_btn = QtWidgets.QPushButton(self.frame_4)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy)
-        self.pushButton_3.setMinimumSize(QtCore.QSize(100, 100))
-        self.pushButton_3.setMaximumSize(QtCore.QSize(250, 250))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout_4.addWidget(self.pushButton_3)
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_4)
+        sizePolicy.setHeightForWidth(self.sol_materiales_btn.sizePolicy().hasHeightForWidth())
+        self.sol_materiales_btn.setSizePolicy(sizePolicy)
+        self.sol_materiales_btn.setMinimumSize(QtCore.QSize(100, 100))
+        self.sol_materiales_btn.setMaximumSize(QtCore.QSize(250, 250))
+        self.sol_materiales_btn.setObjectName("sol_materiales_btn")
+        self.verticalLayout_4.addWidget(self.sol_materiales_btn)
+        self.sol_maquinaria_btn = QtWidgets.QPushButton(self.frame_4)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy)
-        self.pushButton_2.setMinimumSize(QtCore.QSize(100, 100))
-        self.pushButton_2.setMaximumSize(QtCore.QSize(250, 250))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.verticalLayout_4.addWidget(self.pushButton_2)
+        sizePolicy.setHeightForWidth(self.sol_maquinaria_btn.sizePolicy().hasHeightForWidth())
+        self.sol_maquinaria_btn.setSizePolicy(sizePolicy)
+        self.sol_maquinaria_btn.setMinimumSize(QtCore.QSize(100, 100))
+        self.sol_maquinaria_btn.setMaximumSize(QtCore.QSize(250, 250))
+        self.sol_maquinaria_btn.setObjectName("sol_maquinaria_btn")
+        self.verticalLayout_4.addWidget(self.sol_maquinaria_btn)
         self.horizontalLayout_5.addWidget(self.frame_4)
         spacerItem3 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_5.addItem(spacerItem3)
-        self.tableWidget_3 = QtWidgets.QTableWidget(self.frame_3)
-        self.tableWidget_3.setEnabled(True)
+        self.tabla_miembros = QtWidgets.QTableWidget(self.frame_3)
+        self.tabla_miembros.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.tableWidget_3.sizePolicy().hasHeightForWidth())
-        self.tableWidget_3.setSizePolicy(sizePolicy)
-        self.tableWidget_3.setMaximumSize(QtCore.QSize(1000, 16777215))
-        self.tableWidget_3.setObjectName("tableWidget_3")
-        self.tableWidget_3.setColumnCount(0)
-        self.tableWidget_3.setRowCount(0)
-        self.horizontalLayout_5.addWidget(self.tableWidget_3)
+        sizePolicy.setHeightForWidth(self.tabla_miembros.sizePolicy().hasHeightForWidth())
+        self.tabla_miembros.setSizePolicy(sizePolicy)
+        self.tabla_miembros.setMaximumSize(QtCore.QSize(1000, 16777215))
+        self.tabla_miembros.setObjectName("tabla_miembros")
+        self.tabla_miembros.setColumnCount(0)
+        self.tabla_miembros.setRowCount(0)
+        self.horizontalLayout_5.addWidget(self.tabla_miembros)
         self.verticalLayout_5.addWidget(self.frame_3)
         self.stackedWidget.addWidget(self.proyecto_page)
-        self.page_2 = QtWidgets.QWidget()
-        self.page_2.setObjectName("page_2")
-        self.stackedWidget.addWidget(self.page_2)
+        self.panel_page = QtWidgets.QWidget()
+        self.panel_page.setObjectName("panel_page")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.panel_page)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.titulo_4 = QtWidgets.QLabel(self.panel_page)
+        self.titulo_4.setObjectName("titulo_4")
+        self.verticalLayout_9.addWidget(self.titulo_4, 0, QtCore.Qt.AlignHCenter)
+        self.lista_panel = QtWidgets.QListWidget(self.panel_page)
+        self.lista_panel.setObjectName("lista_panel")
+        self.verticalLayout_9.addWidget(self.lista_panel)
+        self.stackedWidget.addWidget(self.panel_page)
         self.admin_page = QtWidgets.QWidget()
         self.admin_page.setObjectName("admin_page")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.admin_page)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.label_6 = QtWidgets.QLabel(self.admin_page)
-        self.label_6.setObjectName("label_6")
-        self.verticalLayout_6.addWidget(self.label_6, 0, QtCore.Qt.AlignHCenter)
+        self.title = QtWidgets.QLabel(self.admin_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.title.setFont(font)
+        self.title.setStyleSheet("QLabel {\n"
+"    \n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.title.setObjectName("title")
+        self.verticalLayout_6.addWidget(self.title, 0, QtCore.Qt.AlignHCenter)
         self.frame_7 = QtWidgets.QFrame(self.admin_page)
         self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -299,17 +388,17 @@ class UiMainWindow(object):
         self.frame_6.setObjectName("frame_6")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_6)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.label_4 = QtWidgets.QLabel(self.frame_6)
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_7.addWidget(self.label_4, 0, QtCore.Qt.AlignHCenter)
-        self.tableWidget_4 = QtWidgets.QTableWidget(self.frame_6)
-        self.tableWidget_4.setObjectName("tableWidget_4")
-        self.tableWidget_4.setColumnCount(0)
-        self.tableWidget_4.setRowCount(0)
-        self.verticalLayout_7.addWidget(self.tableWidget_4)
-        self.pushButton_4 = QtWidgets.QPushButton(self.frame_6)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.verticalLayout_7.addWidget(self.pushButton_4)
+        self.subtitulo_3 = QtWidgets.QLabel(self.frame_6)
+        self.subtitulo_3.setObjectName("subtitulo_3")
+        self.verticalLayout_7.addWidget(self.subtitulo_3, 0, QtCore.Qt.AlignHCenter)
+        self.tabla_copias = QtWidgets.QTableWidget(self.frame_6)
+        self.tabla_copias.setObjectName("tabla_copias")
+        self.tabla_copias.setColumnCount(0)
+        self.tabla_copias.setRowCount(0)
+        self.verticalLayout_7.addWidget(self.tabla_copias)
+        self.copia_sesguridad_btn = QtWidgets.QPushButton(self.frame_6)
+        self.copia_sesguridad_btn.setObjectName("copia_sesguridad_btn")
+        self.verticalLayout_7.addWidget(self.copia_sesguridad_btn)
         self.horizontalLayout_6.addWidget(self.frame_6)
         self.frame_5 = QtWidgets.QFrame(self.frame_7)
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -317,15 +406,15 @@ class UiMainWindow(object):
         self.frame_5.setObjectName("frame_5")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame_5)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.label_5 = QtWidgets.QLabel(self.frame_5)
-        self.label_5.setObjectName("label_5")
-        self.verticalLayout_8.addWidget(self.label_5, 0, QtCore.Qt.AlignHCenter)
-        self.listView = QtWidgets.QListView(self.frame_5)
-        self.listView.setObjectName("listView")
-        self.verticalLayout_8.addWidget(self.listView)
-        self.pushButton_5 = QtWidgets.QPushButton(self.frame_5)
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.verticalLayout_8.addWidget(self.pushButton_5)
+        self.subtitulo_2 = QtWidgets.QLabel(self.frame_5)
+        self.subtitulo_2.setObjectName("subtitulo_2")
+        self.verticalLayout_8.addWidget(self.subtitulo_2, 0, QtCore.Qt.AlignHCenter)
+        self.lista_panel_2 = QtWidgets.QListView(self.frame_5)
+        self.lista_panel_2.setObjectName("lista_panel_2")
+        self.verticalLayout_8.addWidget(self.lista_panel_2)
+        self.add_panel_btn = QtWidgets.QPushButton(self.frame_5)
+        self.add_panel_btn.setObjectName("add_panel_btn")
+        self.verticalLayout_8.addWidget(self.add_panel_btn)
         self.horizontalLayout_6.addWidget(self.frame_5)
         self.verticalLayout_6.addWidget(self.frame_7)
         self.stackedWidget.addWidget(self.admin_page)
@@ -337,41 +426,33 @@ class UiMainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Inventario"))
+        self.titulo.setText(_translate("MainWindow", "Inventario"))
         self.bus_inventario_btn.setText(_translate("MainWindow", "Buscar en inventario"))
-        item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "ID"))
-        item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Especificaciones"))
-        item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Nueva columna"))
-        item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Cantidad"))
-        item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "F. Caducidad"))
-        self.label_2.setText(_translate("MainWindow", "Maquinaria"))
-        self.pushButton.setText(_translate("MainWindow", "Buscar en maquinaria"))
-        self.label_3.setText(_translate("MainWindow", "Proyecto"))
-        self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
-        self.label_6.setText(_translate("MainWindow", "Administración"))
-        self.label_4.setText(_translate("MainWindow", "TextLabel"))
-        self.pushButton_4.setText(_translate("MainWindow", "PushButton"))
-        self.label_5.setText(_translate("MainWindow", "TextLabel"))
-        self.pushButton_5.setText(_translate("MainWindow", "PushButton"))
+        self.titulo_2.setText(_translate("MainWindow", "Maquinaria"))
+        self.bus_maquina_btn.setText(_translate("MainWindow", "Buscar en maquinaria"))
+        self.titulo_3.setText(_translate("MainWindow", "Proyecto"))
+        self.subtitulo.setText(_translate("MainWindow", "Solicitud de assets:"))
+        self.sol_materiales_btn.setText(_translate("MainWindow", "Solicitar materiales"))
+        self.sol_maquinaria_btn.setText(_translate("MainWindow", "Solicitar maquinaria"))
+        self.titulo_4.setText(_translate("MainWindow", "Panel colaborativo"))
+        self.title.setText(_translate("MainWindow", "Administración"))
+        self.subtitulo_3.setText(_translate("MainWindow", "Copias de seguridad"))
+        self.copia_sesguridad_btn.setText(_translate("MainWindow", "Crear copia de seguridad"))
+        self.subtitulo_2.setText(_translate("MainWindow", "Entradas del panel colaborativo"))
+        self.add_panel_btn.setText(_translate("MainWindow", "Añadir entrada al panel"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = UiMainWindow()
+    ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

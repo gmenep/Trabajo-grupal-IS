@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>908</width>
-    <height>516</height>
+    <width>1009</width>
+    <height>547</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -16,8 +16,16 @@
     <height>16777215</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>Open Sans</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -47,6 +55,9 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QPushButton" name="inventario_btn">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -68,6 +79,20 @@
          <property name="styleSheet">
           <string notr="true">QPushButton {
     image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_inventario.png&quot;) 0 0 0 0 stretch stretch;
+	border-radius: 8px;
+	color: rgb(235, 238, 242);
+	background-color: rgb(8, 77, 166);
+}
+
+QPushButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(3, 90, 166);
+}
+
+QPushButton:pressed {
+	border: none;
+	color: rgb(8, 77, 166);
+	background-color: rgb(235, 238, 242);
 }</string>
          </property>
          <property name="text">
@@ -98,6 +123,20 @@
          <property name="styleSheet">
           <string notr="true">QPushButton {
     image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_maquinaria.png&quot;) 0 0 0 0 stretch stretch;
+	border-radius: 8px;
+	color: rgb(235, 238, 242);
+	background-color: rgb(8, 77, 166);
+}
+
+QPushButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(3, 90, 166);
+}
+
+QPushButton:pressed {
+	border: none;
+	color: rgb(8, 77, 166);
+	background-color: rgb(235, 238, 242);
 }</string>
          </property>
          <property name="text">
@@ -128,6 +167,20 @@
          <property name="styleSheet">
           <string notr="true">QPushButton {
     image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_panel_colaborativo.png&quot;) 0 0 0 0 stretch stretch;
+	border-radius: 8px;
+	color: rgb(235, 238, 242);
+	background-color: rgb(8, 77, 166);
+}
+
+QPushButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(3, 90, 166);
+}
+
+QPushButton:pressed {
+	border: none;
+	color: rgb(8, 77, 166);
+	background-color: rgb(235, 238, 242);
 }</string>
          </property>
          <property name="text">
@@ -158,6 +211,20 @@
          <property name="styleSheet">
           <string notr="true">QPushButton {
     image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_proyecto.png&quot;) 0 0 0 0 stretch stretch;
+	border-radius: 8px;
+	color: rgb(235, 238, 242);
+	background-color: rgb(8, 77, 166);
+}
+
+QPushButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(3, 90, 166);
+}
+
+QPushButton:pressed {
+	border: none;
+	color: rgb(8, 77, 166);
+	background-color: rgb(235, 238, 242);
 }</string>
          </property>
          <property name="text">
@@ -191,6 +258,20 @@
          <property name="styleSheet">
           <string notr="true">QPushButton {
     image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_admin.png&quot;) 0 0 0 0 stretch stretch;
+	border-radius: 8px;
+	color: rgb(235, 238, 242);
+	background-color: rgb(8, 77, 166);
+}
+
+QPushButton:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgb(3, 90, 166);
+}
+
+QPushButton:pressed {
+	border: none;
+	color: rgb(8, 77, 166);
+	background-color: rgb(235, 238, 242);
 }</string>
          </property>
          <property name="text">
@@ -213,7 +294,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>4</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="inventario_page">
           <property name="enabled">
@@ -221,7 +302,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="titulo">
              <property name="text">
               <string>Inventario</string>
              </property>
@@ -293,7 +374,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox"/>
+               <widget class="QComboBox" name="almacen_box"/>
               </item>
               <item>
                <spacer name="horizontalSpacer">
@@ -315,40 +396,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="tableWidget">
-             <column>
-              <property name="text">
-               <string>ID</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Especificaciones</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Nueva columna</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Cantidad</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>F. Caducidad</string>
-              </property>
-             </column>
-            </widget>
+            <widget class="QTableWidget" name="tabla_inventario"/>
            </item>
           </layout>
          </widget>
          <widget class="QWidget" name="maquinaria_page">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="titulo_2">
              <property name="text">
               <string>Maquinaria</string>
              </property>
@@ -364,7 +419,7 @@
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="bus_maquina_btn">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -411,6 +466,9 @@
                </widget>
               </item>
               <item>
+               <widget class="QComboBox" name="almacen_box_2"/>
+              </item>
+              <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -427,14 +485,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="tableWidget_2"/>
+            <widget class="QTableWidget" name="tabla_maquinaria"/>
            </item>
           </layout>
          </widget>
          <widget class="QWidget" name="proyecto_page">
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="titulo_3">
              <property name="text">
               <string>Proyecto</string>
              </property>
@@ -483,33 +541,15 @@
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_4">
-                 <item>
-                  <widget class="QPushButton" name="pushButton_3">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                     <horstretch>1</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>100</width>
-                     <height>100</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>250</width>
-                     <height>250</height>
-                    </size>
-                   </property>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="subtitulo">
                    <property name="text">
-                    <string>PushButton</string>
+                    <string>Solicitud de assets:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_2">
+                  <widget class="QPushButton" name="sol_materiales_btn">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                      <horstretch>1</horstretch>
@@ -529,7 +569,32 @@
                     </size>
                    </property>
                    <property name="text">
-                    <string>PushButton</string>
+                    <string>Solicitar materiales</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="sol_maquinaria_btn">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>1</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>100</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>250</width>
+                     <height>250</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Solicitar maquinaria</string>
                    </property>
                   </widget>
                  </item>
@@ -553,7 +618,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QTableWidget" name="tableWidget_3">
+               <widget class="QTableWidget" name="tabla_miembros">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
@@ -576,11 +641,38 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="page_2"/>
+         <widget class="QWidget" name="panel_page">
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="titulo_4">
+             <property name="text">
+              <string>Panel colaborativo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="lista_panel"/>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="admin_page">
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="title">
+             <property name="font">
+              <font>
+               <family>Open Sans</family>
+               <pointsize>14</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel {
+	
+	color: rgb(255, 255, 255);
+}</string>
+             </property>
              <property name="text">
               <string>Administración</string>
              </property>
@@ -605,19 +697,19 @@
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_7">
                  <item alignment="Qt::AlignHCenter">
-                  <widget class="QLabel" name="label_4">
+                  <widget class="QLabel" name="subtitulo_3">
                    <property name="text">
-                    <string>TextLabel</string>
+                    <string>Copias de seguridad</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QTableWidget" name="tableWidget_4"/>
+                  <widget class="QTableWidget" name="tabla_copias"/>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_4">
+                  <widget class="QPushButton" name="copia_sesguridad_btn">
                    <property name="text">
-                    <string>PushButton</string>
+                    <string>Crear copia de seguridad</string>
                    </property>
                   </widget>
                  </item>
@@ -634,19 +726,19 @@
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_8">
                  <item alignment="Qt::AlignHCenter">
-                  <widget class="QLabel" name="label_5">
+                  <widget class="QLabel" name="subtitulo_2">
                    <property name="text">
-                    <string>TextLabel</string>
+                    <string>Entradas del panel colaborativo</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QListView" name="listView"/>
+                  <widget class="QListView" name="lista_panel_2"/>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_5">
+                  <widget class="QPushButton" name="add_panel_btn">
                    <property name="text">
-                    <string>PushButton</string>
+                    <string>Añadir entrada al panel</string>
                    </property>
                   </widget>
                  </item>
