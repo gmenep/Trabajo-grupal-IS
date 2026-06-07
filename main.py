@@ -1,4 +1,5 @@
 import sys
+import os
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -43,4 +44,5 @@ class LabTrackApp:
 
 
 if __name__ == "__main__":
+    os.environ["JAVA_HOME"] = r"c:\Users\lmomf\anaconda3\envs\labtrack"
     LabTrackApp().ejecutar()
