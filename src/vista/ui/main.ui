@@ -2133,12 +2133,7 @@ QTableWidget::item:selected {
              </column>
              <column>
               <property name="text">
-               <string>Likes</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Dislikes</string>
+               <string>Proyecto</string>
               </property>
              </column>
             </widget>

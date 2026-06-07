@@ -299,8 +299,6 @@ CREATE TABLE `panel_entries` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `likes` int NOT NULL DEFAULT 0,
-  `dislikes` int NOT NULL DEFAULT 0,
   PRIMARY KEY (`entry_id`),
   KEY `FK_PanelEntries_Projects` (`project_id`),
   KEY `FK_PanelEntries_Studies` (`study_id`),

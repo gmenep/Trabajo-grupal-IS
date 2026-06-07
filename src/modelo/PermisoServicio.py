@@ -1,5 +1,6 @@
 class PermisoServicio:
     def __init__(self):
+        self.__permisos_tecnico = ["maquinaria", "ayuda", "salir"]
         self.__permisos = {
             "inventario": ["Administrador", "Reponedor"],
             "maquinaria": ["Administrador", "Tecnico"],
@@ -20,6 +21,8 @@ class PermisoServicio:
 
     def puede(self, sesion, permiso):
         if sesion is None:
+            return False
+        if "Tecnico" in sesion.roles and permiso not in self.__permisos_tecnico:
             return False
         roles_permitidos = self.__permisos.get(permiso, [])
         for rol in sesion.roles:

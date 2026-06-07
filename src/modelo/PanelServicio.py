@@ -43,18 +43,6 @@ class PanelServicio(ServicioBase):
         self._registrar_log(sesion.user_id, "ELIMINAR_ENTRADA_PANEL", entry_id, "Entrada eliminada")
         return True
 
-    def dar_like(self, sesion, entry_id):
-        self._verificar_permiso(sesion, "panel", "LIKE_PANEL")
-        self.__panel_dao.like(entry_id)
-        self._registrar_log(sesion.user_id, "LIKE_PANEL", entry_id, "Like")
-        return True
-
-    def dar_dislike(self, sesion, entry_id):
-        self._verificar_permiso(sesion, "panel", "DISLIKE_PANEL")
-        self.__panel_dao.dislike(entry_id)
-        self._registrar_log(sesion.user_id, "DISLIKE_PANEL", entry_id, "Dislike")
-        return True
-
     def __normalizar_entero(self, valor, nombre, obligatorio):
         if valor is None or str(valor).strip() == "":
             if obligatorio:

@@ -6,7 +6,7 @@ class PanelEntryDaoJDBC(BaseDaoJDBC):
     SQL_SELECT = """
         SELECT pe.entry_id, pe.project_id, pe.study_id, pe.user_id, pe.title, pe.content,
                pe.created_at, p.title, COALESCE(CONCAT('Estudio ', pe.study_id), ''),
-               COALESCE(u.full_name, u.login), pe.likes, pe.dislikes
+               COALESCE(u.full_name, u.login)
         FROM panel_entries pe
         INNER JOIN projects p ON p.project_id = pe.project_id
         LEFT JOIN users u ON u.user_id = pe.user_id
@@ -15,7 +15,7 @@ class PanelEntryDaoJDBC(BaseDaoJDBC):
     SQL_SELECT_BY_ID = """
         SELECT pe.entry_id, pe.project_id, pe.study_id, pe.user_id, pe.title, pe.content,
                pe.created_at, p.title, COALESCE(CONCAT('Estudio ', pe.study_id), ''),
-               COALESCE(u.full_name, u.login), pe.likes, pe.dislikes
+               COALESCE(u.full_name, u.login)
         FROM panel_entries pe
         INNER JOIN projects p ON p.project_id = pe.project_id
         LEFT JOIN users u ON u.user_id = pe.user_id
@@ -26,12 +26,6 @@ class PanelEntryDaoJDBC(BaseDaoJDBC):
         VALUES(?, ?, ?, ?, ?)
     """
     SQL_UPDATE = "UPDATE panel_entries SET title = ?, content = ? WHERE entry_id = ?"
-    SQL_LIKE = "UPDATE panel_entries SET likes = likes + 1 WHERE entry_id = ?"
-    SQL_DISLIKE = "UPDATE panel_entries SET dislikes = dislikes + 1 WHERE entry_id = ?"
-
-    def __init__(self):
-        BaseDaoJDBC.__init__(self)
-        self.__asegurar_estructura()
     SQL_DELETE = "DELETE FROM panel_entries WHERE entry_id = ?"
 
     def select(self):
@@ -55,20 +49,6 @@ class PanelEntryDaoJDBC(BaseDaoJDBC):
     def delete(self, entry_id):
         return self._write(self.SQL_DELETE, (entry_id,))
 
-    def like(self, entry_id):
-        return self._write(self.SQL_LIKE, (entry_id,))
-
-    def dislike(self, entry_id):
-        return self._write(self.SQL_DISLIKE, (entry_id,))
-
-    def __asegurar_estructura(self):
-        likes = self._select("SHOW COLUMNS FROM panel_entries LIKE 'likes'", ())
-        if len(likes) == 0:
-            self._write("ALTER TABLE panel_entries ADD COLUMN likes int NOT NULL DEFAULT 0", ())
-        dislikes = self._select("SHOW COLUMNS FROM panel_entries LIKE 'dislikes'", ())
-        if len(dislikes) == 0:
-            self._write("ALTER TABLE panel_entries ADD COLUMN dislikes int NOT NULL DEFAULT 0", ())
-
     def __rows_to_vo(self, filas):
         entradas = []
         for fila in filas:
@@ -76,4 +56,4 @@ class PanelEntryDaoJDBC(BaseDaoJDBC):
         return entradas
 
     def __row_to_vo(self, fila):
-        return PanelEntryVo(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5], fila[6], fila[7], fila[8], fila[9], fila[10], fila[11])
+        return PanelEntryVo(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5], fila[6], fila[7], fila[8], fila[9])

@@ -123,8 +123,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             ("entry_id", "ID"),
             ("title", "Titulo"),
             ("author_name", "Autor"),
-            ("likes", "Likes"),
-            ("dislikes", "Dislikes"),
             ("project_title", "Proyecto")
         ]
         self.__cargar_tabla(self.tableWidget, columnas, filas)
@@ -135,8 +133,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             ("entry_id", "ID"),
             ("title", "Titulo"),
             ("author_name", "Autor"),
-            ("likes", "Likes"),
-            ("dislikes", "Dislikes"),
             ("project_title", "Proyecto")
         ]
         self.__cargar_tabla(self.tableWidget_2, columnas, filas)

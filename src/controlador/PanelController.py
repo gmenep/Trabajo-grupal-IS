@@ -56,7 +56,5 @@ class PanelController:
             "created_at": entrada.created_at,
             "project_title": entrada.project_title,
             "study_label": entrada.study_label,
-            "author_name": entrada.author_name,
-            "likes": entrada.likes,
-            "dislikes": entrada.dislikes
+            "author_name": entrada.author_name
         }

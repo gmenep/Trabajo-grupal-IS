@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from src.modelo.BackupServicio import BackupServicio
 
 
@@ -34,10 +32,5 @@ class BackupController:
             return
         if not self.__view.confirmar("Eliminar copia seleccionada?"):
             return
-        ruta = Path(actual.get("path")).resolve()
-        raiz = Path.cwd().resolve()
-        if raiz not in ruta.parents:
-            self.__view.mostrar_error("La copia no pertenece al proyecto")
-            return
-        self.__servicio.eliminar_backup(self.__sesion, ruta)
+        self.__servicio.eliminar_backup(self.__sesion, actual.get("path"))
         self.cargar()
