@@ -16,7 +16,7 @@ class PermisoServicio:
             "ver_miembros_proyecto": ["Auditor", "Director"],
             "modificar_proyecto_usuarios": ["Director"],
             "finalizar_proyecto": ["Director"],
-            "modificar_panel": ["Administrador", "Director"],
+            "modificar_panel": ["Director"],
             "gestionar_usuarios": ["Administrador"],
             "salir": ["Administrador", "Director", "Investigador", "Auditor", "Tecnico", "Reponedor"]
         }

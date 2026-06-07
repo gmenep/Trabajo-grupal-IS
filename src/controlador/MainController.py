@@ -174,7 +174,7 @@ class MainController:
 
         self.__window.copias_widget.setVisible(self.__puede("backup"))
         self.__window.usuarios_widget.setVisible(self.__puede("gestionar_usuarios"))
-        self.__window.panel_widget.setVisible(self.__puede("panel") or self.__puede("logs"))
+        self.__window.panel_widget.setVisible(self.__puede("panel"))
         self.__window.add_panel_btn.setVisible(self.__puede("modificar_panel"))
         self.__window.pushButton_2.setVisible(self.__puede("logs"))
 

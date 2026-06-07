@@ -21,7 +21,7 @@ class ProyectoServicio(ServicioBase):
     def listar_proyectos(self, sesion):
         self._verificar_permiso(sesion, "proyectos", "CONSULTAR_PROYECTOS")
         proyectos = self.__project_dao.select()
-        if self._permiso_servicio.tiene_rol(sesion, "Investigador"):
+        if self.__debe_filtrar_proyectos(sesion):
             project_ids = self.__belongs_to_dao.select_project_ids_by_user(sesion.user_id)
             filtrados = []
             for proyecto in proyectos:
@@ -104,3 +104,12 @@ class ProyectoServicio(ServicioBase):
         self.__project_dao.finalizar(project_id)
         self._registrar_log(sesion.user_id, "FINALIZAR_PROYECTO", project_id, "Proyecto finalizado")
         return True
+
+    def __debe_filtrar_proyectos(self, sesion):
+        if self._permiso_servicio.tiene_rol(sesion, "Administrador"):
+            return False
+        if self._permiso_servicio.tiene_rol(sesion, "Investigador"):
+            return True
+        if self._permiso_servicio.tiene_rol(sesion, "Director"):
+            return True
+        return False

@@ -26,7 +26,7 @@ class PanelServicio(ServicioBase):
         return self.__panel_dao.select_by_id(entry_id)
 
     def agregar_entrada(self, sesion, title, content):
-        self._verificar_permiso(sesion, "panel", "ANADIR_ENTRADA_PANEL")
+        self._verificar_permiso(sesion, "modificar_panel", "ANADIR_ENTRADA_PANEL")
         if title is None or title.strip() == "":
             raise Exception("El titulo es obligatorio")
         if content is None or content.strip() == "":
