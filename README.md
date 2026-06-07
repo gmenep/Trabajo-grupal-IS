@@ -124,3 +124,7 @@ Despues de validar se deben eliminar `__pycache__` y `*.pyc` generados.
 - Si falla JPype, revisar que Java JDK este instalado.
 - Si falla JDBC, revisar que el jar este en `lib`.
 - Si backup o restauracion falla, revisar `mysqldump` y `mysql` en PATH.
+
+## Carpeta pruebas
+
+- Esta carpeta contiene lo necesario para cargar datos para realizar pruebas en la app
