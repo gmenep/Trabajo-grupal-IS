@@ -132,7 +132,7 @@
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
-    image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_inventario.png&quot;) 0 0 0 0 stretch stretch;
+    image: url(&quot;src/vista/images/boton_inventario.png&quot;) 0 0 0 0 stretch stretch;
 	border-radius: 8px;
 	color: rgb(235, 238, 242);
 	background-color: rgb(8, 77, 166);
@@ -176,7 +176,7 @@ QPushButton:pressed {
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
-    image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_maquinaria.png&quot;) 0 0 0 0 stretch stretch;
+    image: url(&quot;src/vista/images/boton_maquinaria.png&quot;) 0 0 0 0 stretch stretch;
 	border-radius: 8px;
 	color: rgb(235, 238, 242);
 	background-color: rgb(8, 77, 166);
@@ -220,7 +220,7 @@ QPushButton:pressed {
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
-    image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_proyecto.png&quot;) 0 0 0 0 stretch stretch;
+    image: url(&quot;src/vista/images/boton_proyecto.png&quot;) 0 0 0 0 stretch stretch;
 	border-radius: 8px;
 	color: rgb(235, 238, 242);
 	background-color: rgb(8, 77, 166);
@@ -264,7 +264,7 @@ QPushButton:pressed {
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
-    image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_panel_colaborativo.png&quot;) 0 0 0 0 stretch stretch;
+    image: url(&quot;src/vista/images/boton_panel_colaborativo.png&quot;) 0 0 0 0 stretch stretch;
 	border-radius: 8px;
 	color: rgb(235, 238, 242);
 	background-color: rgb(8, 77, 166);
@@ -311,7 +311,7 @@ QPushButton:pressed {
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
-    image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_admin.png&quot;) 0 0 0 0 stretch stretch;
+    image: url(&quot;src/vista/images/boton_admin.png&quot;) 0 0 0 0 stretch stretch;
 	border-radius: 8px;
 	color: rgb(235, 238, 242);
 	background-color: rgb(8, 77, 166);
@@ -355,7 +355,7 @@ QPushButton:pressed {
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
-    image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_ayuda.png&quot;) 0 0 0 0 stretch stretch;
+    image: url(&quot;src/vista/images/boton_ayuda.png&quot;) 0 0 0 0 stretch stretch;
 	border-radius: 8px;
 	color: rgb(235, 238, 242);
 	background-color: rgb(8, 77, 166);
@@ -399,7 +399,7 @@ QPushButton:pressed {
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
-    image: url(&quot;C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_salir.png&quot;) 0 0 0 0 stretch stretch;
+    image: url(&quot;src/vista/images/boton_salir.png&quot;) 0 0 0 0 stretch stretch;
 	border-radius: 8px;
 	color: rgb(235, 238, 242);
 	background-color: rgb(8, 77, 166);

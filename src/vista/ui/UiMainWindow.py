@@ -70,7 +70,7 @@ class Ui_MainWindow(object):
         self.inventario_btn.setMinimumSize(QtCore.QSize(50, 50))
         self.inventario_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.inventario_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_inventario.png\") 0 0 0 0 stretch stretch;\n"
+"    image: url(\"src/vista/images/boton_inventario.png\") 0 0 0 0 stretch stretch;\n"
 "    border-radius: 8px;\n"
 "    color: rgb(235, 238, 242);\n"
 "    background-color: rgb(8, 77, 166);\n"
@@ -98,7 +98,7 @@ class Ui_MainWindow(object):
         self.maquinaria_btn.setMinimumSize(QtCore.QSize(50, 50))
         self.maquinaria_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.maquinaria_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_maquinaria.png\") 0 0 0 0 stretch stretch;\n"
+"    image: url(\"src/vista/images/boton_maquinaria.png\") 0 0 0 0 stretch stretch;\n"
 "    border-radius: 8px;\n"
 "    color: rgb(235, 238, 242);\n"
 "    background-color: rgb(8, 77, 166);\n"
@@ -126,7 +126,7 @@ class Ui_MainWindow(object):
         self.proyecto_btn.setMinimumSize(QtCore.QSize(50, 50))
         self.proyecto_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.proyecto_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_proyecto.png\") 0 0 0 0 stretch stretch;\n"
+"    image: url(\"src/vista/images/boton_proyecto.png\") 0 0 0 0 stretch stretch;\n"
 "    border-radius: 8px;\n"
 "    color: rgb(235, 238, 242);\n"
 "    background-color: rgb(8, 77, 166);\n"
@@ -154,7 +154,7 @@ class Ui_MainWindow(object):
         self.panel_btn.setMinimumSize(QtCore.QSize(50, 50))
         self.panel_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.panel_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_panel_colaborativo.png\") 0 0 0 0 stretch stretch;\n"
+"    image: url(\"src/vista/images/boton_panel_colaborativo.png\") 0 0 0 0 stretch stretch;\n"
 "    border-radius: 8px;\n"
 "    color: rgb(235, 238, 242);\n"
 "    background-color: rgb(8, 77, 166);\n"
@@ -183,7 +183,7 @@ class Ui_MainWindow(object):
         self.admin_btn.setMinimumSize(QtCore.QSize(50, 50))
         self.admin_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.admin_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_admin.png\") 0 0 0 0 stretch stretch;\n"
+"    image: url(\"src/vista/images/boton_admin.png\") 0 0 0 0 stretch stretch;\n"
 "    border-radius: 8px;\n"
 "    color: rgb(235, 238, 242);\n"
 "    background-color: rgb(8, 77, 166);\n"
@@ -211,7 +211,7 @@ class Ui_MainWindow(object):
         self.ayuda_btn.setMinimumSize(QtCore.QSize(50, 50))
         self.ayuda_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.ayuda_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_ayuda.png\") 0 0 0 0 stretch stretch;\n"
+"    image: url(\"src/vista/images/boton_ayuda.png\") 0 0 0 0 stretch stretch;\n"
 "    border-radius: 8px;\n"
 "    color: rgb(235, 238, 242);\n"
 "    background-color: rgb(8, 77, 166);\n"
@@ -239,7 +239,7 @@ class Ui_MainWindow(object):
         self.salir_btn.setMinimumSize(QtCore.QSize(50, 50))
         self.salir_btn.setMaximumSize(QtCore.QSize(110, 110))
         self.salir_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_salir.png\") 0 0 0 0 stretch stretch;\n"
+"    image: url(\"src/vista/images/boton_salir.png\") 0 0 0 0 stretch stretch;\n"
 "    border-radius: 8px;\n"
 "    color: rgb(235, 238, 242);\n"
 "    background-color: rgb(8, 77, 166);\n"

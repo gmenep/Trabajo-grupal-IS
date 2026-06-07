@@ -1,4 +1,3 @@
 class Observador:
-
     def actualizar(self, log_vo):
-        pass
+        raise Exception("El observador debe implementar actualizar")

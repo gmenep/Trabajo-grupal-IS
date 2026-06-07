@@ -1,134 +1,48 @@
-from src.modelo.conexion.Conexion import Conexion
+from src.modelo.dao.BaseDaoJDBC import BaseDaoJDBC
 from src.modelo.vo.StorageVo import StorageVo
 
 
-class StorageDaoJDBC(Conexion):
-    SQL_SELECT = "SELECT storage_id, name, specifications FROM storage"
-    SQL_SELECT_BY_ID = """
-        SELECT storage_id, name, specifications
-        FROM storage
-        WHERE storage_id = ?
-    """
-    SQL_INSERT = """
-        INSERT INTO storage(storage_id, name, specifications)
-        VALUES(?, ?, ?)
-    """
-    SQL_UPDATE = """
-        UPDATE storage
-        SET name = ?, specifications = ?
-        WHERE storage_id = ?
-    """
+class StorageDaoJDBC(BaseDaoJDBC):
+    SQL_SELECT = "SELECT storage_id, name, specifications FROM storage ORDER BY name"
+    SQL_SELECT_BY_ID = "SELECT storage_id, name, specifications FROM storage WHERE storage_id = ?"
+    SQL_SELECT_BY_NAME = "SELECT storage_id, name, specifications FROM storage WHERE name = ?"
+    SQL_INSERT = "INSERT INTO storage(name, specifications) VALUES(?, ?)"
+    SQL_UPDATE = "UPDATE storage SET name = ?, specifications = ? WHERE storage_id = ?"
     SQL_DELETE = "DELETE FROM storage WHERE storage_id = ?"
 
     def select(self):
-        cursor = None
-        storage_items = []
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT)
-            rows = cursor.fetchall()
-
-            for row in rows:
-                storage_items.append(self.__map_row(row))
-
-        except Exception as e:
-            print("Error en select de Storage:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return storage_items
+        almacenes = []
+        filas = self._select(self.SQL_SELECT, ())
+        for fila in filas:
+            almacenes.append(self.__row_to_vo(fila))
+        return almacenes
 
     def select_by_id(self, storage_id):
-        cursor = None
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT_BY_ID, (storage_id,))
-            row = cursor.fetchone()
-
-            if row is None:
-                return None
-
-            return self.__map_row(row)
-
-        except Exception as e:
-            print("Error en select_by_id de Storage:", e)
+        fila = self._select_one(self.SQL_SELECT_BY_ID, (storage_id,))
+        if fila is None:
             return None
+        return self.__row_to_vo(fila)
 
-        finally:
-            if cursor is not None:
-                cursor.close()
+    def select_by_name(self, name):
+        fila = self._select_one(self.SQL_SELECT_BY_NAME, (name,))
+        if fila is None:
+            return None
+        return self.__row_to_vo(fila)
 
     def insert(self, storage):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_INSERT,
-                (storage.storage_id, storage.name, storage.specifications)
-            )
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error en insert de Storage:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        return self._insert_id(self.SQL_INSERT, (storage.name, storage.specifications))
 
     def update(self, storage):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_UPDATE,
-                (storage.name, storage.specifications, storage.storage_id)
-            )
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error en update de Storage:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        return self._write(self.SQL_UPDATE, (storage.name, storage.specifications, storage.storage_id))
 
     def delete(self, storage_id):
-        cursor = None
-        rows = 0
+        return self._write(self.SQL_DELETE, (storage_id,))
 
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_DELETE, (storage_id,))
-            rows = cursor.rowcount
-            self.__commit()
+    def insert_if_not_exists(self, storage):
+        existente = self.select_by_name(storage.name)
+        if existente is not None:
+            return existente.storage_id
+        return self.insert(storage)
 
-        except Exception as e:
-            print("Error en delete de Storage:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
-
-    def __map_row(self, row):
-        storage_id, name, specifications = row
-        return StorageVo(storage_id, name, specifications)
-
-    def __commit(self):
-        if self.conexion is not None:
-            self.conexion.commit()
+    def __row_to_vo(self, fila):
+        return StorageVo(fila[0], fila[1], fila[2])

@@ -20,7 +20,7 @@ la db se piden.
 MAQUINARIA (ACCESIBLE A: técnicos, administradores):
 -Boton buscar en maquinaria, y recargar mismo funcionamiento que para inventario pero aplicado a la maquinaria.
 -Añadir máquina: Añade una nueva máquina. El ID se autocompleta igual que en el inventario. El resto de datos necesarios para la db se pide. El almacen donde 
-se va a almacenar se introuce mediante un desplegable (como almacenbox).
+se va a almacenar se introduce mediante un desplegable (como almacenbox).
 -Modificar: permite modificar datos de una máquina como su nombre u otras cosas almacenadas en la base de datos. Esto se utiliza principalmente para actualizar las fechas
 de revisión y los estados.
 -Mover: sirve para mover una máquina via su id (introducido desde un desplegable que muestra todos los id almacenados) a un almacen nuevo (de nuevo mediante un desplegable).

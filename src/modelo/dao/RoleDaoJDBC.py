@@ -1,134 +1,48 @@
-from src.modelo.conexion.Conexion import Conexion
+from src.modelo.dao.BaseDaoJDBC import BaseDaoJDBC
 from src.modelo.vo.RoleVo import RoleVo
 
 
-class RoleDaoJDBC(Conexion):
-    SQL_SELECT = "SELECT role_id, role_name, permisos FROM roles"
-    SQL_SELECT_BY_ID = """
-        SELECT role_id, role_name, permisos
-        FROM roles
-        WHERE role_id = ?
-    """
-    SQL_INSERT = """
-        INSERT INTO roles(role_id, role_name, permisos)
-        VALUES(?, ?, ?)
-    """
-    SQL_UPDATE = """
-        UPDATE roles
-        SET role_name = ?, permisos = ?
-        WHERE role_id = ?
-    """
+class RoleDaoJDBC(BaseDaoJDBC):
+    SQL_SELECT = "SELECT role_id, role_name, permisos FROM roles ORDER BY role_name"
+    SQL_SELECT_BY_ID = "SELECT role_id, role_name, permisos FROM roles WHERE role_id = ?"
+    SQL_SELECT_BY_NAME = "SELECT role_id, role_name, permisos FROM roles WHERE role_name = ?"
+    SQL_INSERT = "INSERT INTO roles(role_name, permisos) VALUES(?, ?)"
+    SQL_UPDATE = "UPDATE roles SET role_name = ?, permisos = ? WHERE role_id = ?"
     SQL_DELETE = "DELETE FROM roles WHERE role_id = ?"
 
     def select(self):
-        cursor = None
         roles = []
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT)
-            rows = cursor.fetchall()
-
-            for row in rows:
-                roles.append(self.__map_row(row))
-
-        except Exception as e:
-            print("Error en select de Role:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
+        filas = self._select(self.SQL_SELECT, ())
+        for fila in filas:
+            roles.append(self.__row_to_vo(fila))
         return roles
 
     def select_by_id(self, role_id):
-        cursor = None
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT_BY_ID, (role_id,))
-            row = cursor.fetchone()
-
-            if row is None:
-                return None
-
-            return self.__map_row(row)
-
-        except Exception as e:
-            print("Error en select_by_id de Role:", e)
+        fila = self._select_one(self.SQL_SELECT_BY_ID, (role_id,))
+        if fila is None:
             return None
+        return self.__row_to_vo(fila)
 
-        finally:
-            if cursor is not None:
-                cursor.close()
+    def select_by_name(self, role_name):
+        fila = self._select_one(self.SQL_SELECT_BY_NAME, (role_name,))
+        if fila is None:
+            return None
+        return self.__row_to_vo(fila)
 
     def insert(self, role):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_INSERT,
-                (role.role_id, role.role_name, role.permisos)
-            )
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error en insert de Role:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        return self._insert_id(self.SQL_INSERT, (role.role_name, role.permisos))
 
     def update(self, role):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_UPDATE,
-                (role.role_name, role.permisos, role.role_id)
-            )
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error en update de Role:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        return self._write(self.SQL_UPDATE, (role.role_name, role.permisos, role.role_id))
 
     def delete(self, role_id):
-        cursor = None
-        rows = 0
+        return self._write(self.SQL_DELETE, (role_id,))
 
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_DELETE, (role_id,))
-            rows = cursor.rowcount
-            self.__commit()
+    def insert_if_not_exists(self, role):
+        existente = self.select_by_name(role.role_name)
+        if existente is not None:
+            return existente.role_id
+        return self.insert(role)
 
-        except Exception as e:
-            print("Error en delete de Role:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
-
-    def __map_row(self, row):
-        role_id, role_name, permisos = row
-        return RoleVo(role_id, role_name, permisos)
-
-    def __commit(self):
-        if self.conexion is not None:
-            self.conexion.commit()
+    def __row_to_vo(self, fila):
+        return RoleVo(fila[0], fila[1], fila[2])

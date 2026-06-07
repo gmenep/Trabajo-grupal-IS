@@ -1,20 +1,26 @@
-from src.modelo.conexion.Conexion import Conexion
+from src.modelo.dao.BaseDaoJDBC import BaseDaoJDBC
 from src.modelo.vo.ProjectVo import ProjectVo
 
 
-class ProjectDaoJDBC(Conexion):
+class ProjectDaoJDBC(BaseDaoJDBC):
     SQL_SELECT = """
         SELECT project_id, title, description, start_date, end_date, state
         FROM projects
+        ORDER BY title
     """
     SQL_SELECT_BY_ID = """
         SELECT project_id, title, description, start_date, end_date, state
         FROM projects
         WHERE project_id = ?
     """
+    SQL_SELECT_BY_TITLE = """
+        SELECT project_id, title, description, start_date, end_date, state
+        FROM projects
+        WHERE title = ?
+    """
     SQL_INSERT = """
-        INSERT INTO projects(project_id, title, description, start_date, end_date, state)
-        VALUES(?, ?, ?, ?, ?, ?)
+        INSERT INTO projects(title, description, start_date, end_date, state)
+        VALUES(?, ?, ?, ?, ?)
     """
     SQL_UPDATE = """
         UPDATE projects
@@ -24,128 +30,38 @@ class ProjectDaoJDBC(Conexion):
     SQL_DELETE = "DELETE FROM projects WHERE project_id = ?"
 
     def select(self):
-        cursor = None
-        projects = []
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT)
-            rows = cursor.fetchall()
-
-            for row in rows:
-                projects.append(self.__map_row(row))
-
-        except Exception as e:
-            print("Error en select de Project:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return projects
+        proyectos = []
+        filas = self._select(self.SQL_SELECT, ())
+        for fila in filas:
+            proyectos.append(self.__row_to_vo(fila))
+        return proyectos
 
     def select_by_id(self, project_id):
-        cursor = None
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT_BY_ID, (project_id,))
-            row = cursor.fetchone()
-
-            if row is None:
-                return None
-
-            return self.__map_row(row)
-
-        except Exception as e:
-            print("Error en select_by_id de Project:", e)
+        fila = self._select_one(self.SQL_SELECT_BY_ID, (project_id,))
+        if fila is None:
             return None
+        return self.__row_to_vo(fila)
 
-        finally:
-            if cursor is not None:
-                cursor.close()
+    def select_by_title(self, title):
+        fila = self._select_one(self.SQL_SELECT_BY_TITLE, (title,))
+        if fila is None:
+            return None
+        return self.__row_to_vo(fila)
 
     def insert(self, project):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_INSERT,
-                (
-                    project.project_id,
-                    project.title,
-                    project.description,
-                    project.start_date,
-                    project.end_date,
-                    project.state
-                )
-            )
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error en insert de Project:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        return self._insert_id(self.SQL_INSERT, (project.title, project.description, project.start_date, project.end_date, project.state))
 
     def update(self, project):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_UPDATE,
-                (
-                    project.title,
-                    project.description,
-                    project.start_date,
-                    project.end_date,
-                    project.state,
-                    project.project_id
-                )
-            )
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error en update de Project:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        return self._write(self.SQL_UPDATE, (project.title, project.description, project.start_date, project.end_date, project.state, project.project_id))
 
     def delete(self, project_id):
-        cursor = None
-        rows = 0
+        return self._write(self.SQL_DELETE, (project_id,))
 
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_DELETE, (project_id,))
-            rows = cursor.rowcount
-            self.__commit()
+    def insert_if_not_exists(self, project):
+        existente = self.select_by_title(project.title)
+        if existente is not None:
+            return existente.project_id
+        return self.insert(project)
 
-        except Exception as e:
-            print("Error en delete de Project:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
-
-    def __map_row(self, row):
-        project_id, title, description, start_date, end_date, state = row
-        return ProjectVo(project_id, title, description, start_date, end_date, state)
-
-    def __commit(self):
-        if self.conexion is not None:
-            self.conexion.commit()
+    def __row_to_vo(self, fila):
+        return ProjectVo(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5])

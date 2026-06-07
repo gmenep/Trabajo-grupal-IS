@@ -15,6 +15,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP TABLE IF EXISTS `panel_entries`;
+DROP TABLE IF EXISTS `machine_usage`;
+DROP TABLE IF EXISTS `material_movements`;
+DROP TABLE IF EXISTS `machine_location`;
+
 --
 -- Table structure for table `assets`
 --
@@ -224,6 +229,86 @@ CREATE TABLE `users` (
   UNIQUE KEY `DNI` (`DNI`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `machine_location`
+--
+
+CREATE TABLE `machine_location` (
+  `machine_id` int NOT NULL,
+  `storage_id` int NOT NULL,
+  PRIMARY KEY (`machine_id`),
+  KEY `FK_MachineLocation_Storage` (`storage_id`),
+  CONSTRAINT `FK_MachineLocation_Machines` FOREIGN KEY (`machine_id`) REFERENCES `machines` (`machine_id`),
+  CONSTRAINT `FK_MachineLocation_Storage` FOREIGN KEY (`storage_id`) REFERENCES `storage` (`storage_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `machine_usage`
+--
+
+CREATE TABLE `machine_usage` (
+  `usage_id` int NOT NULL AUTO_INCREMENT,
+  `machine_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `project_id` int NOT NULL,
+  `start_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `end_date` datetime DEFAULT NULL,
+  `state` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`usage_id`),
+  KEY `FK_MachineUsage_Machines` (`machine_id`),
+  KEY `FK_MachineUsage_Users` (`user_id`),
+  KEY `FK_MachineUsage_Projects` (`project_id`),
+  CONSTRAINT `FK_MachineUsage_Machines` FOREIGN KEY (`machine_id`) REFERENCES `machines` (`machine_id`),
+  CONSTRAINT `FK_MachineUsage_Projects` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`),
+  CONSTRAINT `FK_MachineUsage_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `material_movements`
+--
+
+CREATE TABLE `material_movements` (
+  `movement_id` int NOT NULL AUTO_INCREMENT,
+  `material_id` int NOT NULL,
+  `storage_id` int NOT NULL,
+  `batch_number` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int NOT NULL,
+  `quantity` decimal(10,2) NOT NULL,
+  `movement_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `movement_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`movement_id`),
+  KEY `FK_MaterialMovements_Materials` (`material_id`),
+  KEY `FK_MaterialMovements_Storage` (`storage_id`),
+  KEY `FK_MaterialMovements_Users` (`user_id`),
+  CONSTRAINT `FK_MaterialMovements_Materials` FOREIGN KEY (`material_id`) REFERENCES `materials` (`material_id`),
+  CONSTRAINT `FK_MaterialMovements_Storage` FOREIGN KEY (`storage_id`) REFERENCES `storage` (`storage_id`),
+  CONSTRAINT `FK_MaterialMovements_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `panel_entries`
+--
+
+CREATE TABLE `panel_entries` (
+  `entry_id` int NOT NULL AUTO_INCREMENT,
+  `project_id` int NOT NULL,
+  `study_id` int DEFAULT NULL,
+  `user_id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `likes` int NOT NULL DEFAULT 0,
+  `dislikes` int NOT NULL DEFAULT 0,
+  PRIMARY KEY (`entry_id`),
+  KEY `FK_PanelEntries_Projects` (`project_id`),
+  KEY `FK_PanelEntries_Studies` (`study_id`),
+  KEY `FK_PanelEntries_Users` (`user_id`),
+  CONSTRAINT `FK_PanelEntries_Projects` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`),
+  CONSTRAINT `FK_PanelEntries_Studies` FOREIGN KEY (`study_id`) REFERENCES `studies` (`study_id`),
+  CONSTRAINT `FK_PanelEntries_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

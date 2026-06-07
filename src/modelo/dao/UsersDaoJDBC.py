@@ -1,11 +1,12 @@
-from src.modelo.conexion.Conexion import Conexion
+from src.modelo.dao.BaseDaoJDBC import BaseDaoJDBC
 from src.modelo.vo.UsuarioVo import UsuarioVo
 
 
-class UsersDaoJDBC(Conexion):
+class UsersDaoJDBC(BaseDaoJDBC):
     SQL_SELECT = """
         SELECT user_id, login, pass_hash, full_name, DNI, state, studies
         FROM users
+        ORDER BY user_id
     """
     SQL_SELECT_BY_ID = """
         SELECT user_id, login, pass_hash, full_name, DNI, state, studies
@@ -18,165 +19,71 @@ class UsersDaoJDBC(Conexion):
         WHERE login = ?
     """
     SQL_INSERT = """
-        INSERT INTO users(user_id, login, pass_hash, full_name, DNI, state, studies)
-        VALUES(?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO users(login, pass_hash, full_name, DNI, state, studies)
+        VALUES(?, ?, ?, ?, ?, ?)
     """
     SQL_UPDATE = """
         UPDATE users
         SET login = ?, pass_hash = ?, full_name = ?, DNI = ?, state = ?, studies = ?
         WHERE user_id = ?
     """
+    SQL_DEACTIVATE = "UPDATE users SET state = ? WHERE user_id = ?"
     SQL_DELETE = "DELETE FROM users WHERE user_id = ?"
 
     def select(self):
-        cursor = None
         usuarios = []
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT)
-            rows = cursor.fetchall()
-
-            for row in rows:
-                usuarios.append(self.__map_row(row))
-
-        except Exception as e:
-            print("Error al seleccionar usuarios:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
+        filas = self._select(self.SQL_SELECT, ())
+        for fila in filas:
+            usuarios.append(self.__row_to_vo(fila))
         return usuarios
 
     def select_by_id(self, user_id):
-        cursor = None
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT_BY_ID, (user_id,))
-            row = cursor.fetchone()
-
-            if row is None:
-                return None
-
-            return self.__map_row(row)
-
-        except Exception as e:
-            print("Error al seleccionar usuario por id:", e)
+        fila = self._select_one(self.SQL_SELECT_BY_ID, (user_id,))
+        if fila is None:
             return None
-
-        finally:
-            if cursor is not None:
-                cursor.close()
+        return self.__row_to_vo(fila)
 
     def select_by_login(self, login):
-        cursor = None
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_SELECT_BY_LOGIN, (login,))
-            row = cursor.fetchone()
-
-            if row is None:
-                return None
-
-            return self.__map_row(row)
-
-        except Exception as e:
-            print("Error al seleccionar usuario por login:", e)
+        fila = self._select_one(self.SQL_SELECT_BY_LOGIN, (login,))
+        if fila is None:
             return None
-
-        finally:
-            if cursor is not None:
-                cursor.close()
+        return self.__row_to_vo(fila)
 
     def insert(self, usuario):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_INSERT,
-                (
-                    usuario.user_id,
-                    usuario.login,
-                    usuario.pass_hash,
-                    usuario.full_name,
-                    usuario.dni,
-                    usuario.state,
-                    usuario.studies
-                )
+        return self._insert_id(
+            self.SQL_INSERT,
+            (
+                usuario.login,
+                usuario.pass_hash,
+                usuario.full_name,
+                usuario.dni,
+                usuario.state,
+                usuario.studies
             )
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error al insertar usuario:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        )
 
     def update(self, usuario):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(
-                self.SQL_UPDATE,
-                (
-                    usuario.login,
-                    usuario.pass_hash,
-                    usuario.full_name,
-                    usuario.dni,
-                    usuario.state,
-                    usuario.studies,
-                    usuario.user_id
-                )
+        return self._write(
+            self.SQL_UPDATE,
+            (
+                usuario.login,
+                usuario.pass_hash,
+                usuario.full_name,
+                usuario.dni,
+                usuario.state,
+                usuario.studies,
+                usuario.user_id
             )
-            rows = cursor.rowcount
-            self.__commit()
+        )
 
-        except Exception as e:
-            print("Error al actualizar usuario:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+    def deactivate(self, user_id):
+        return self._write(self.SQL_DEACTIVATE, ("Baja", user_id))
 
     def delete(self, user_id):
-        cursor = None
-        rows = 0
-
-        try:
-            cursor = self.getCursor()
-            cursor.execute(self.SQL_DELETE, (user_id,))
-            rows = cursor.rowcount
-            self.__commit()
-
-        except Exception as e:
-            print("Error al eliminar usuario:", e)
-
-        finally:
-            if cursor is not None:
-                cursor.close()
-
-        return rows
+        return self._write(self.SQL_DELETE, (user_id,))
 
     def checkLogin(self, login_vo):
         return self.select_by_login(login_vo.user)
 
-    def __map_row(self, row):
-        user_id, login, pass_hash, full_name, dni, state, studies = row
-        return UsuarioVo(user_id, login, pass_hash, full_name, dni, state, studies)
-
-    def __commit(self):
-        if self.conexion is not None:
-            self.conexion.commit()
+    def __row_to_vo(self, fila):
+        return UsuarioVo(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5], fila[6])

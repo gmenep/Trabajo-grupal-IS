@@ -1,26 +1,25 @@
-from src.vista.ui.UiLoginWindow import UiLoginWindow
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
+
+from src.vista.ui.UiLoginWindow import UiLoginWindow
+
 
 class LoginWindow(QMainWindow, UiLoginWindow):
     def __init__(self):
-        super().__init__()
-        
+        QMainWindow.__init__(self)
         self.setupUi(self)
-        self.__controller = None
+        self.setWindowTitle("LabTrack - Login")
 
-        
-        self.btn_login.clicked.connect(self.login)
+    def obtener_usuario(self):
+        return self.input_user.text()
 
-    @property
-    def controlador(self):
-        return self.__controller
-
-    @controlador.setter
-    def controlador(self, controller):
-        self.__controller = controller
-
-    def login(self):
-        self.__controller.login(self.input_user.text(), self.input_pass.text())
+    def obtener_password(self):
+        return self.input_pass.text()
 
     def warning_message(self, message):
-        QMessageBox.warning(self, "Warning", message)
+        self.mostrar_error(message)
+
+    def mostrar_error(self, message):
+        QMessageBox.warning(self, "LabTrack", message)
+
+    def mostrar_info(self, message):
+        QMessageBox.information(self, "LabTrack", message)
