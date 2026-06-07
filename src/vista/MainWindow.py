@@ -114,7 +114,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label.setText("Miembros del proyecto")
         columnas = [
             ("user_id", "ID"),
-            ("login", "Login"),
+            ("role_name", "Rol"),
             ("full_name", "Nombre"),
             ("dni", "DNI"),
             ("state", "Estado")
@@ -297,8 +297,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def pedir_usuario_proyecto(self, usuarios):
         campos = [
-            ("user_id", "Usuario", "combo", self.__opciones_usuarios(usuarios), None),
-            ("role", "Rol en proyecto", "combo", [("Investigador", "Investigador"), ("Auditor", "Auditor")], None)
+            ("user_id", "Usuario", "combo", self.__opciones_usuarios(usuarios), None)
         ]
         return self.__pedir_datos("Usuario del proyecto", campos)
 

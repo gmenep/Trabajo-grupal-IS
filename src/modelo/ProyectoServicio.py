@@ -1,15 +1,12 @@
 from src.modelo.dao.BelongsToDaoJDBC import BelongsToDaoJDBC
 from src.modelo.dao.ProjectDaoJDBC import ProjectDaoJDBC
-from src.modelo.dao.RoleDaoJDBC import RoleDaoJDBC
 from src.modelo.dao.StudyDaoJDBC import StudyDaoJDBC
-from src.modelo.dao.UserRoleDaoJDBC import UserRoleDaoJDBC
 from src.modelo.dao.UsersDaoJDBC import UsersDaoJDBC
 from src.modelo.dao.MachineUsageDaoJDBC import MachineUsageDaoJDBC
 from src.modelo.ServicioBase import ServicioBase
 from src.modelo.vo.BelongsToVo import BelongsToVo
 from src.modelo.vo.ProjectVo import ProjectVo
 from src.modelo.vo.ProyectoResumenVo import ProyectoResumenVo
-from src.modelo.vo.UserRoleVo import UserRoleVo
 
 
 class ProyectoServicio(ServicioBase):
@@ -18,8 +15,6 @@ class ProyectoServicio(ServicioBase):
         self.__project_dao = ProjectDaoJDBC()
         self.__study_dao = StudyDaoJDBC()
         self.__belongs_to_dao = BelongsToDaoJDBC()
-        self.__role_dao = RoleDaoJDBC()
-        self.__user_role_dao = UserRoleDaoJDBC()
         self.__users_dao = UsersDaoJDBC()
         self.__usage_dao = MachineUsageDaoJDBC()
 
@@ -87,18 +82,9 @@ class ProyectoServicio(ServicioBase):
         self._verificar_permiso(sesion, "modificar_proyecto_usuarios", "CONSULTAR_USUARIOS_PROYECTO")
         return self.__users_dao.select()
 
-    def agregar_usuario_proyecto(self, sesion, project_id, user_id, role_name):
+    def agregar_usuario_proyecto(self, sesion, project_id, user_id):
         self._verificar_permiso(sesion, "modificar_proyecto_usuarios", "ANADIR_USUARIO_PROYECTO")
         self.__belongs_to_dao.insert(BelongsToVo(project_id, user_id))
-        role = self.__role_dao.select_by_name(role_name)
-        if role is not None:
-            roles_actuales = self.__user_role_dao.select_by_user(user_id)
-            existe = False
-            for relacion in roles_actuales:
-                if relacion.role_id == role.role_id:
-                    existe = True
-            if not existe:
-                self.__user_role_dao.insert(UserRoleVo(user_id, role.role_id))
         self._registrar_log(sesion.user_id, "ANADIR_USUARIO_PROYECTO", project_id, "Usuario " + str(user_id))
         return True
 

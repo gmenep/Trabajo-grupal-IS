@@ -36,7 +36,7 @@ class ProyectoController:
         for usuario in miembros:
             filas.append({
                 "user_id": usuario.user_id,
-                "login": usuario.login,
+                "role_name": usuario.role_name,
                 "full_name": usuario.full_name,
                 "dni": usuario.dni,
                 "state": usuario.state
@@ -58,8 +58,7 @@ class ProyectoController:
         self.__servicio.agregar_usuario_proyecto(
             self.__sesion,
             self.__project_id_actual,
-            datos.get("user_id"),
-            datos.get("role")
+            datos.get("user_id")
         )
         self.__view.mostrar_info("Usuario anadido al proyecto")
         self.cargar_miembros()
