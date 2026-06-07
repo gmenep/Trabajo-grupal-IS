@@ -4,7 +4,7 @@ class PermisoServicio:
         self.__permisos = {
             "inventario": ["Administrador", "Reponedor"],
             "maquinaria": ["Administrador", "Tecnico"],
-            "proyectos": ["Administrador", "Investigador", "Director", "Auditor"],
+            "proyectos": ["Investigador", "Director", "Auditor"],
             "panel": ["Investigador", "Director", "Administrador"],
             "administracion": ["Administrador"],
             "logs": ["Administrador", "Auditor", "Director"],
