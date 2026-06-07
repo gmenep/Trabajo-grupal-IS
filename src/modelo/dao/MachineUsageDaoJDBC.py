@@ -24,6 +24,11 @@ class MachineUsageDaoJDBC(BaseDaoJDBC):
         SET state = 'FINALIZADO', end_date = NOW()
         WHERE usage_id = ? AND user_id = ? AND state = 'ACTIVO'
     """
+    SQL_FINISH_BY_MACHINE = """
+        UPDATE machine_usage
+        SET state = 'FINALIZADO', end_date = NOW()
+        WHERE machine_id = ? AND state = 'ACTIVO'
+    """
     SQL_ASIGNACIONES = """
         SELECT mu.project_id, mu.machine_id, a.name, mu.user_id, COALESCE(u.full_name, u.login)
         FROM machine_usage mu
@@ -49,6 +54,9 @@ class MachineUsageDaoJDBC(BaseDaoJDBC):
 
     def finish(self, usage_id, user_id):
         return self._write(self.SQL_FINISH, (usage_id, user_id))
+
+    def finish_by_machine(self, machine_id):
+        return self._write(self.SQL_FINISH_BY_MACHINE, (machine_id,))
 
     def select_asignaciones_activas(self):
         asignaciones = []

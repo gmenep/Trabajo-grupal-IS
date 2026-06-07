@@ -36,6 +36,7 @@ class MaquinariaServicio(ServicioBase):
     def agregar_maquina(self, sesion, name, risk_level, state, last_revision_date, next_revision_date, description, storage_id):
         self._verificar_permiso(sesion, "maquinaria", "ANADIR_MAQUINA")
         self.__validar_riesgo(risk_level)
+        self.__validar_estado(state)
         ultima = self.__fecha_servicio.normalizar_fecha(last_revision_date, "La ultima revision")
         proxima = self.__fecha_servicio.normalizar_fecha(next_revision_date, "La proxima revision")
         self.__fecha_servicio.validar_orden(ultima, proxima, "la ultima revision", "la proxima revision")
@@ -51,14 +52,19 @@ class MaquinariaServicio(ServicioBase):
     def modificar_maquina(self, sesion, machine_id, name, risk_level, state, last_revision_date, next_revision_date, description):
         self._verificar_permiso(sesion, "maquinaria", "MODIFICAR_MAQUINA")
         self.__validar_riesgo(risk_level)
+        self.__validar_estado(state)
         ultima = self.__fecha_servicio.normalizar_fecha(last_revision_date, "La ultima revision")
         proxima = self.__fecha_servicio.normalizar_fecha(next_revision_date, "La proxima revision")
         self.__fecha_servicio.validar_orden(ultima, proxima, "la ultima revision", "la proxima revision")
         asset = self.__asset_dao.select_by_id(machine_id)
         if asset is None:
             raise Exception("La maquina no existe")
+        maquina_actual = self.__machine_dao.select_by_id(machine_id)
+        if maquina_actual is None:
+            raise Exception("La maquina no existe")
         self.__asset_dao.update(AssetVo(machine_id, name, "machine", risk_level))
         self.__machine_dao.update(MachineVo(machine_id, state, ultima, proxima, description))
+        self.__finalizar_uso_si_no_esta_en_uso(sesion, maquina_actual, state)
         self._registrar_log(sesion.user_id, "MODIFICAR_MAQUINA", machine_id, name)
         return True
 
@@ -137,3 +143,23 @@ class MaquinariaServicio(ServicioBase):
     def __validar_riesgo(self, risk_level):
         if risk_level not in ("Bajo", "Medio", "Alto"):
             raise Exception("El riesgo debe ser Bajo, Medio o Alto")
+
+    def __validar_estado(self, state):
+        if state not in ("Operativa", "En uso", "Mantenimiento", "Averiada", "Retirada"):
+            raise Exception("El estado debe ser Operativa, En uso, Mantenimiento, Averiada o Retirada")
+
+    def __finalizar_uso_si_no_esta_en_uso(self, sesion, maquina_actual, nuevo_estado):
+        if maquina_actual.state != "En uso":
+            return
+        if nuevo_estado == "En uso":
+            return
+        activos = self.__usage_dao.select_active_by_machine(maquina_actual.machine_id)
+        if len(activos) == 0:
+            return
+        self.__usage_dao.finish_by_machine(maquina_actual.machine_id)
+        self._registrar_log(
+            sesion.user_id,
+            "FINALIZAR_USO_MAQUINA",
+            maquina_actual.machine_id,
+            "Uso finalizado automaticamente por cambio de estado a " + str(nuevo_estado)
+        )

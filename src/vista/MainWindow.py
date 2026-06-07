@@ -65,7 +65,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         actual = self.almacen_box_2.currentData()
         self.almacen_box_2.clear()
         self.almacen_box_2.addItem("Todos", "")
-        estados = ["Operativa", "En uso", "Mantenimiento", "Retirada"]
+        estados = ["Operativa", "En uso", "Mantenimiento", "Averiada", "Retirada"]
         for estado in estados:
             self.almacen_box_2.addItem(estado, estado)
         for almacen in almacenes:
@@ -529,6 +529,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             ("Operativa", "Operativa"),
             ("En uso", "En uso"),
             ("Mantenimiento", "Mantenimiento"),
+            ("Averiada", "Averiada"),
             ("Retirada", "Retirada")
         ]
 
