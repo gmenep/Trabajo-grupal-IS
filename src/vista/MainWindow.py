@@ -1,9 +1,10 @@
 from pathlib import Path
 
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAbstractItemView, QComboBox, QDialog, QDialogButtonBox, QFormLayout
-from PyQt5.QtWidgets import QHeaderView, QLabel, QLineEdit, QMainWindow, QMessageBox
-from PyQt5.QtWidgets import QTableWidgetItem, QTextEdit, QVBoxLayout
+from PyQt5.QtWidgets import QHeaderView, QLabel, QLineEdit, QMainWindow, QMessageBox, QPushButton
+from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout
 
 from src.vista.ui.UiMainWindow import Ui_MainWindow
 
@@ -13,9 +14,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.setWindowTitle("LabTrack")
+        self.setWindowIcon(QIcon(str(Path(__file__).resolve().parent / "images" / "icono.png")))
         self.__paginas = {}
         self.__registrar_paginas()
         self.__configurar_iconos()
+        self.__crear_boton_finalizar_proyecto()
         self.__configurar_tablas()
 
     def configurar_sesion(self, sesion):
@@ -156,8 +159,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__cargar_tabla(self.tabla_copias, columnas, filas)
 
     def mostrar_logs(self, filas):
-        self.panel_widget.setVisible(True)
-        self.subtitulo_2.setText("Logs")
         columnas = [
             ("log_id", "ID"),
             ("timestamp", "Fecha"),
@@ -166,7 +167,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             ("user_id", "Usuario"),
             ("raw_data", "Datos")
         ]
-        self.__cargar_tabla(self.tableWidget_2, columnas, filas)
+        dialogo = QDialog(self)
+        dialogo.setWindowTitle("Logs")
+        dialogo.resize(900, 500)
+        layout = QVBoxLayout(dialogo)
+        layout.addWidget(QLabel("Logs"))
+        tabla = QTableWidget(dialogo)
+        self.__configurar_tabla(tabla)
+        self.__cargar_tabla(tabla, columnas, filas)
+        layout.addWidget(tabla)
+        botones = QDialogButtonBox(QDialogButtonBox.Ok)
+        botones.accepted.connect(dialogo.accept)
+        layout.addWidget(botones)
+        dialogo.exec_()
 
     def obtener_material_seleccionado(self):
         return self.__fila_seleccionada(self.tabla_inventario)
@@ -282,19 +295,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         campos.append(("role", "Rol", "combo", self.__opciones_roles(roles), None))
         return self.__pedir_datos("Usuario", campos)
 
-    def pedir_usuario_proyecto(self):
+    def pedir_usuario_proyecto(self, usuarios):
         campos = [
-            ("user_id", "ID usuario", "text", ""),
+            ("user_id", "Usuario", "combo", self.__opciones_usuarios(usuarios), None),
             ("role", "Rol en proyecto", "combo", [("Investigador", "Investigador"), ("Auditor", "Auditor")], None)
         ]
         return self.__pedir_datos("Usuario del proyecto", campos)
 
-    def pedir_panel(self, proyectos, datos):
+    def pedir_panel(self, datos):
         if datos is None:
             datos = {}
         campos = [
-            ("project_id", "Proyecto", "combo", self.__opciones_proyectos(proyectos), datos.get("project_id")),
-            ("study_id", "ID estudio", "text", datos.get("study_id")),
             ("title", "Titulo", "text", datos.get("title")),
             ("content", "Contenido", "text", datos.get("content"))
         ]
@@ -342,6 +353,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__estilo_icono(self.ayuda_btn, "boton_ayuda.png", "Ayuda")
         self.__estilo_icono(self.salir_btn, "boton_salir.png", "Salir")
 
+    def __crear_boton_finalizar_proyecto(self):
+        self.finalizar_proyecto_btn = QPushButton(self.miembros_btn_widget)
+        self.finalizar_proyecto_btn.setSizePolicy(self.add_user_btn_2.sizePolicy())
+        self.finalizar_proyecto_btn.setMinimumSize(self.add_user_btn_2.minimumSize())
+        self.finalizar_proyecto_btn.setMaximumSize(self.add_user_btn_2.maximumSize())
+        self.finalizar_proyecto_btn.setFont(self.add_user_btn_2.font())
+        self.finalizar_proyecto_btn.setStyleSheet(self.add_user_btn_2.styleSheet())
+        self.finalizar_proyecto_btn.setText("Finalizar proyecto")
+        self.horizontalLayout_10.addWidget(self.finalizar_proyecto_btn)
+
     def __estilo_icono(self, boton, archivo, tooltip):
         ruta = (Path(__file__).resolve().parent / "images" / archivo).as_posix()
         boton.setToolTip(tooltip)
@@ -366,12 +387,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.tableWidget_2
         ]
         for tabla in tablas:
-            tabla.setAlternatingRowColors(True)
-            tabla.setSelectionBehavior(QAbstractItemView.SelectRows)
-            tabla.setSelectionMode(QAbstractItemView.SingleSelection)
-            tabla.setEditTriggers(QAbstractItemView.NoEditTriggers)
-            tabla.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-            tabla.verticalHeader().setVisible(False)
+            self.__configurar_tabla(tabla)
+
+    def __configurar_tabla(self, tabla):
+        tabla.setAlternatingRowColors(True)
+        tabla.setSelectionBehavior(QAbstractItemView.SelectRows)
+        tabla.setSelectionMode(QAbstractItemView.SingleSelection)
+        tabla.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        tabla.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        tabla.verticalHeader().setVisible(False)
 
     def __cargar_tabla(self, tabla, columnas, filas):
         tabla.clear()
@@ -486,6 +510,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         opciones = []
         for rol in roles:
             opciones.append((rol.role_name, rol.role_name))
+        return opciones
+
+    def __opciones_usuarios(self, usuarios):
+        opciones = []
+        for usuario in usuarios:
+            texto = str(usuario.full_name) + " (" + str(usuario.login) + ")"
+            opciones.append((texto, usuario.user_id))
         return opciones
 
     def __opciones_proyectos(self, proyectos):

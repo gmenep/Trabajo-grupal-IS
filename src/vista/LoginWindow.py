@@ -1,3 +1,6 @@
+from pathlib import Path
+
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 
 from src.vista.ui.UiLoginWindow import UiLoginWindow
@@ -8,6 +11,7 @@ class LoginWindow(QMainWindow, UiLoginWindow):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.setWindowTitle("LabTrack - Login")
+        self.setWindowIcon(QIcon(str(Path(__file__).resolve().parent / "images" / "icono.png")))
 
     def obtener_usuario(self):
         return self.input_user.text()

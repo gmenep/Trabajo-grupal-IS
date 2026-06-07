@@ -136,6 +136,7 @@ class MainController:
         self.__window.tabla_miembros.itemDoubleClicked.connect(lambda item: self.__ejecutar(self.__proyecto_controller.cargar_miembros))
         self.__window.add_user_btn_2.clicked.connect(lambda: self.__ejecutar(self.__proyecto_controller.agregar_usuario))
         self.__window.remove_user_btn_2.clicked.connect(lambda: self.__ejecutar(self.__proyecto_controller.eliminar_usuario))
+        self.__window.finalizar_proyecto_btn.clicked.connect(lambda: self.__ejecutar(self.__proyecto_controller.finalizar_proyecto))
 
         self.__window.tableWidget.itemDoubleClicked.connect(lambda item: self.__ejecutar(self.__panel_controller.ver_detalle))
 
@@ -169,6 +170,7 @@ class MainController:
         self.__window.miembros_widget.setVisible(self.__puede("proyectos"))
         self.__window.add_user_btn_2.setVisible(self.__puede("modificar_proyecto_usuarios"))
         self.__window.remove_user_btn_2.setVisible(self.__puede("modificar_proyecto_usuarios"))
+        self.__window.finalizar_proyecto_btn.setVisible(self.__puede("finalizar_proyecto"))
 
         self.__window.copias_widget.setVisible(self.__puede("backup"))
         self.__window.usuarios_widget.setVisible(self.__puede("gestionar_usuarios"))

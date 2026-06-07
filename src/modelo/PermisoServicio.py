@@ -4,7 +4,7 @@ class PermisoServicio:
         self.__permisos = {
             "inventario": ["Administrador", "Reponedor"],
             "maquinaria": ["Administrador", "Tecnico"],
-            "proyectos": ["Investigador", "Director", "Auditor"],
+            "proyectos": ["Administrador", "Investigador", "Director", "Auditor"],
             "panel": ["Investigador", "Director", "Administrador"],
             "administracion": ["Administrador"],
             "logs": ["Administrador", "Auditor", "Director"],
@@ -12,8 +12,10 @@ class PermisoServicio:
             "estadisticas": ["Administrador"],
             "ayuda": ["Administrador", "Director", "Investigador", "Auditor", "Tecnico", "Reponedor"],
             "solicitar_assets": ["Investigador", "Director"],
+            "crear_proyecto": ["Director"],
             "ver_miembros_proyecto": ["Auditor", "Director"],
             "modificar_proyecto_usuarios": ["Director"],
+            "finalizar_proyecto": ["Director"],
             "modificar_panel": ["Administrador", "Director"],
             "gestionar_usuarios": ["Administrador"],
             "salir": ["Administrador", "Director", "Investigador", "Auditor", "Tecnico", "Reponedor"]

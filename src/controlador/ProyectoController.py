@@ -9,6 +9,7 @@ class ProyectoController:
         self.__project_id_actual = None
 
     def cargar(self):
+        self.__project_id_actual = None
         proyectos = self.__servicio.listar_resumen_proyectos(self.__sesion)
         filas = []
         for proyecto in proyectos:
@@ -50,7 +51,8 @@ class ProyectoController:
         if self.__project_id_actual is None:
             self.__view.mostrar_error("Selecciona un proyecto")
             return
-        datos = self.__view.pedir_usuario_proyecto()
+        usuarios = self.__servicio.listar_usuarios_para_proyecto(self.__sesion)
+        datos = self.__view.pedir_usuario_proyecto(usuarios)
         if datos is None:
             return
         self.__servicio.agregar_usuario_proyecto(
@@ -75,3 +77,21 @@ class ProyectoController:
         self.__servicio.eliminar_usuario_proyecto(self.__sesion, self.__project_id_actual, usuario.get("user_id"))
         self.__view.mostrar_info("Usuario eliminado del proyecto")
         self.cargar_miembros()
+
+    def finalizar_proyecto(self):
+        actual = self.__view.obtener_proyecto_seleccionado()
+        project_id = None
+        if actual is not None and actual.get("project_id") is not None:
+            project_id = actual.get("project_id")
+            self.__project_id_actual = project_id
+        elif self.__project_id_actual is not None:
+            project_id = self.__project_id_actual
+        if project_id is None:
+            self.__view.mostrar_error("Selecciona un proyecto")
+            return
+        if not self.__view.confirmar("Finalizar proyecto seleccionado?"):
+            return
+        self.__servicio.finalizar_proyecto(self.__sesion, project_id)
+        self.__view.mostrar_info("Proyecto finalizado")
+        self.__project_id_actual = None
+        self.cargar()

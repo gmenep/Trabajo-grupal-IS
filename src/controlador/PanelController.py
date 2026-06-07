@@ -1,5 +1,4 @@
 from src.modelo.PanelServicio import PanelServicio
-from src.modelo.ProyectoServicio import ProyectoServicio
 
 
 class PanelController:
@@ -7,7 +6,6 @@ class PanelController:
         self.__view = view
         self.__sesion = sesion
         self.__panel_servicio = PanelServicio()
-        self.__proyecto_servicio = ProyectoServicio()
 
     def cargar(self):
         entradas = self.__panel_servicio.listar_entradas(self.__sesion)
@@ -24,14 +22,11 @@ class PanelController:
         self.__view.mostrar_panel_admin(filas)
 
     def crear(self):
-        proyectos = self.__proyecto_servicio.listar_proyectos(self.__sesion)
-        datos = self.__view.pedir_panel(proyectos, None)
+        datos = self.__view.pedir_panel(None)
         if datos is None:
             return
         self.__panel_servicio.agregar_entrada(
             self.__sesion,
-            datos.get("project_id"),
-            datos.get("study_id"),
             datos.get("title"),
             datos.get("content")
         )

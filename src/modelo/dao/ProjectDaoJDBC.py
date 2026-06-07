@@ -27,6 +27,11 @@ class ProjectDaoJDBC(BaseDaoJDBC):
         SET title = ?, description = ?, start_date = ?, end_date = ?, state = ?
         WHERE project_id = ?
     """
+    SQL_FINALIZAR = """
+        UPDATE projects
+        SET end_date = CURDATE(), state = ?
+        WHERE project_id = ?
+    """
     SQL_DELETE = "DELETE FROM projects WHERE project_id = ?"
 
     def select(self):
@@ -53,6 +58,9 @@ class ProjectDaoJDBC(BaseDaoJDBC):
 
     def update(self, project):
         return self._write(self.SQL_UPDATE, (project.title, project.description, project.start_date, project.end_date, project.state, project.project_id))
+
+    def finalizar(self, project_id):
+        return self._write(self.SQL_FINALIZAR, ("Finalizado", project_id))
 
     def delete(self, project_id):
         return self._write(self.SQL_DELETE, (project_id,))
