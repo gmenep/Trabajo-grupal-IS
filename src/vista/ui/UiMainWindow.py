@@ -14,26 +14,53 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1009, 547)
+        MainWindow.resize(1184, 630)
         MainWindow.setMaximumSize(QtCore.QSize(16777215, 16777215))
         font = QtGui.QFont()
         font.setFamily("Open Sans")
         MainWindow.setFont(font)
-        MainWindow.setStyleSheet("")
+        MainWindow.setStyleSheet("QMainWindow, QWidget#centralwidget {\n"
+"    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, \n"
+"                                stop:0 #cfe2ff,   /* Azul cielo bien visible en la esquina */\n"
+"                                stop:0.95 #f8fafc,  /* Transición rápida a tono claro */\n"
+"                                stop:1 #ffffff);   /* Blanco en la esquina opuesta */\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.side_bar = QtWidgets.QFrame(self.centralwidget)
-        self.side_bar.setMinimumSize(QtCore.QSize(0, 0))
+        self.side_bar.setMinimumSize(QtCore.QSize(150, 0))
         self.side_bar.setMaximumSize(QtCore.QSize(150, 16777215))
-        self.side_bar.setStyleSheet("")
+        self.side_bar.setStyleSheet("#side_bar{\n"
+"    background-color: rgba(255, 255, 255, 200);\n"
+"    border: 1px solid #e1e4e8;\n"
+"    border-radius: 12px;\n"
+"}\n"
+"\n"
+"")
         self.side_bar.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.side_bar.setFrameShadow(QtWidgets.QFrame.Raised)
         self.side_bar.setObjectName("side_bar")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.side_bar)
+        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.side_bar)
+        self.horizontalLayout_14.setObjectName("horizontalLayout_14")
+        spacerItem = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_14.addItem(spacerItem)
+        self.btn_container_widget = QtWidgets.QFrame(self.side_bar)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_container_widget.sizePolicy().hasHeightForWidth())
+        self.btn_container_widget.setSizePolicy(sizePolicy)
+        self.btn_container_widget.setMinimumSize(QtCore.QSize(50, 0))
+        self.btn_container_widget.setMaximumSize(QtCore.QSize(110, 16777215))
+        self.btn_container_widget.setStyleSheet("")
+        self.btn_container_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.btn_container_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.btn_container_widget.setObjectName("btn_container_widget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.btn_container_widget)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.inventario_btn = QtWidgets.QPushButton(self.side_bar)
+        self.inventario_btn = QtWidgets.QPushButton(self.btn_container_widget)
         self.inventario_btn.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -62,7 +89,7 @@ class Ui_MainWindow(object):
         self.inventario_btn.setText("")
         self.inventario_btn.setObjectName("inventario_btn")
         self.verticalLayout.addWidget(self.inventario_btn)
-        self.maquinaria_btn = QtWidgets.QPushButton(self.side_bar)
+        self.maquinaria_btn = QtWidgets.QPushButton(self.btn_container_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -90,35 +117,7 @@ class Ui_MainWindow(object):
         self.maquinaria_btn.setText("")
         self.maquinaria_btn.setObjectName("maquinaria_btn")
         self.verticalLayout.addWidget(self.maquinaria_btn)
-        self.panel_btn = QtWidgets.QPushButton(self.side_bar)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.panel_btn.sizePolicy().hasHeightForWidth())
-        self.panel_btn.setSizePolicy(sizePolicy)
-        self.panel_btn.setMinimumSize(QtCore.QSize(50, 50))
-        self.panel_btn.setMaximumSize(QtCore.QSize(110, 110))
-        self.panel_btn.setStyleSheet("QPushButton {\n"
-"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_panel_colaborativo.png\") 0 0 0 0 stretch stretch;\n"
-"    border-radius: 8px;\n"
-"    color: rgb(235, 238, 242);\n"
-"    background-color: rgb(8, 77, 166);\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: rgb(3, 90, 166);\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    border: none;\n"
-"    color: rgb(8, 77, 166);\n"
-"    background-color: rgb(235, 238, 242);\n"
-"}")
-        self.panel_btn.setText("")
-        self.panel_btn.setObjectName("panel_btn")
-        self.verticalLayout.addWidget(self.panel_btn)
-        self.proyecto_btn = QtWidgets.QPushButton(self.side_bar)
+        self.proyecto_btn = QtWidgets.QPushButton(self.btn_container_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -146,7 +145,35 @@ class Ui_MainWindow(object):
         self.proyecto_btn.setText("")
         self.proyecto_btn.setObjectName("proyecto_btn")
         self.verticalLayout.addWidget(self.proyecto_btn)
-        self.admin_btn = QtWidgets.QPushButton(self.side_bar)
+        self.panel_btn = QtWidgets.QPushButton(self.btn_container_widget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.panel_btn.sizePolicy().hasHeightForWidth())
+        self.panel_btn.setSizePolicy(sizePolicy)
+        self.panel_btn.setMinimumSize(QtCore.QSize(50, 50))
+        self.panel_btn.setMaximumSize(QtCore.QSize(110, 110))
+        self.panel_btn.setStyleSheet("QPushButton {\n"
+"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_panel_colaborativo.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
+"}")
+        self.panel_btn.setText("")
+        self.panel_btn.setObjectName("panel_btn")
+        self.verticalLayout.addWidget(self.panel_btn)
+        self.admin_btn = QtWidgets.QPushButton(self.btn_container_widget)
         self.admin_btn.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -175,6 +202,65 @@ class Ui_MainWindow(object):
         self.admin_btn.setText("")
         self.admin_btn.setObjectName("admin_btn")
         self.verticalLayout.addWidget(self.admin_btn)
+        self.ayuda_btn = QtWidgets.QPushButton(self.btn_container_widget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.ayuda_btn.sizePolicy().hasHeightForWidth())
+        self.ayuda_btn.setSizePolicy(sizePolicy)
+        self.ayuda_btn.setMinimumSize(QtCore.QSize(50, 50))
+        self.ayuda_btn.setMaximumSize(QtCore.QSize(110, 110))
+        self.ayuda_btn.setStyleSheet("QPushButton {\n"
+"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_ayuda.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
+"}")
+        self.ayuda_btn.setText("")
+        self.ayuda_btn.setObjectName("ayuda_btn")
+        self.verticalLayout.addWidget(self.ayuda_btn)
+        self.salir_btn = QtWidgets.QPushButton(self.btn_container_widget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.salir_btn.sizePolicy().hasHeightForWidth())
+        self.salir_btn.setSizePolicy(sizePolicy)
+        self.salir_btn.setMinimumSize(QtCore.QSize(50, 50))
+        self.salir_btn.setMaximumSize(QtCore.QSize(110, 110))
+        self.salir_btn.setStyleSheet("QPushButton {\n"
+"    image: url(\"C:/Users/lmomf/Desktop/is/Trabajo-grupal-IS/src/vista/images/boton_salir.png\") 0 0 0 0 stretch stretch;\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
+"}")
+        self.salir_btn.setText("")
+        self.salir_btn.setObjectName("salir_btn")
+        self.verticalLayout.addWidget(self.salir_btn)
+        self.horizontalLayout_14.addWidget(self.btn_container_widget)
+        spacerItem1 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_14.addItem(spacerItem1)
         self.horizontalLayout.addWidget(self.side_bar)
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -190,6 +276,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.inventario_page)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.titulo = QtWidgets.QLabel(self.inventario_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.titulo.setFont(font)
+        self.titulo.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
         self.titulo.setObjectName("titulo")
         self.verticalLayout_2.addWidget(self.titulo, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.busqueda_widget = QtWidgets.QFrame(self.inventario_page)
@@ -212,6 +309,22 @@ class Ui_MainWindow(object):
         self.bus_inventario_btn.setSizePolicy(sizePolicy)
         self.bus_inventario_btn.setMinimumSize(QtCore.QSize(150, 0))
         self.bus_inventario_btn.setMaximumSize(QtCore.QSize(150, 50))
+        self.bus_inventario_btn.setStyleSheet("QPushButton {\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
+"}")
         self.bus_inventario_btn.setObjectName("bus_inventario_btn")
         self.horizontalLayout_3.addWidget(self.bus_inventario_btn)
         self.lineEdit = QtWidgets.QLineEdit(self.busqueda_widget)
@@ -222,18 +335,296 @@ class Ui_MainWindow(object):
         self.lineEdit.setSizePolicy(sizePolicy)
         self.lineEdit.setMinimumSize(QtCore.QSize(300, 0))
         self.lineEdit.setMaximumSize(QtCore.QSize(800, 50))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.lineEdit.setFont(font)
+        self.lineEdit.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    padding: 6px 12px;\n"
+"    background-color: #ffffff;\n"
+"    color: #333333;\n"
+"    font-size: 13px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario hace clic para escribir */\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0b5ed7; /* Azul a juego con tus botones */\n"
+"    background-color: #ffffff;\n"
+"}")
         self.lineEdit.setObjectName("lineEdit")
         self.horizontalLayout_3.addWidget(self.lineEdit)
         self.almacen_box = QtWidgets.QComboBox(self.busqueda_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.almacen_box.setFont(font)
+        self.almacen_box.setStyleSheet("QComboBox {\n"
+"    border: 2px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    padding: 6px 12px;\n"
+"    background-color: #ffffff;\n"
+"    color: #333333;\n"
+"    font-size: 13px;\n"
+"    min-width: 6ch;\n"
+"}\n"
+"\n"
+"QComboBox:focus {\n"
+"    border: 2px solid #0b5ed7;\n"
+"}\n"
+"\n"
+"/* Estilo del botón de la flecha */\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 25px;\n"
+"    border-left-width: 0px;\n"
+"    border-top-right-radius: 6px;\n"
+"    border-bottom-right-radius: 6px;\n"
+"}\n"
+"\n"
+"/* Estilo de la lista desplegada */\n"
+"QComboBox QAbstractItemView {\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    background-color: #ffffff;\n"
+"    selection-background-color: #0b5ed7;\n"
+"    selection-color: #ffffff;\n"
+"    padding: 4px;\n"
+"}")
         self.almacen_box.setObjectName("almacen_box")
         self.horizontalLayout_3.addWidget(self.almacen_box)
-        spacerItem = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem)
+        spacerItem2 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem2)
         self.verticalLayout_2.addWidget(self.busqueda_widget, 0, QtCore.Qt.AlignTop)
+        self.botones_widget = QtWidgets.QFrame(self.inventario_page)
+        self.botones_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.botones_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.botones_widget.setObjectName("botones_widget")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.botones_widget)
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.recargar_btn = QtWidgets.QPushButton(self.botones_widget)
+        self.recargar_btn.setMinimumSize(QtCore.QSize(150, 40))
+        self.recargar_btn.setMaximumSize(QtCore.QSize(150, 40))
+        self.recargar_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.recargar_btn.setObjectName("recargar_btn")
+        self.horizontalLayout_7.addWidget(self.recargar_btn)
+        self.add_material_btn = QtWidgets.QPushButton(self.botones_widget)
+        self.add_material_btn.setMinimumSize(QtCore.QSize(150, 40))
+        self.add_material_btn.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_material_btn.setFont(font)
+        self.add_material_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.add_material_btn.setObjectName("add_material_btn")
+        self.horizontalLayout_7.addWidget(self.add_material_btn)
+        self.add_lote_btn = QtWidgets.QPushButton(self.botones_widget)
+        self.add_lote_btn.setMinimumSize(QtCore.QSize(150, 40))
+        self.add_lote_btn.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_lote_btn.setFont(font)
+        self.add_lote_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.add_lote_btn.setObjectName("add_lote_btn")
+        self.horizontalLayout_7.addWidget(self.add_lote_btn)
+        self.modificar_btn = QtWidgets.QPushButton(self.botones_widget)
+        self.modificar_btn.setMinimumSize(QtCore.QSize(150, 40))
+        self.modificar_btn.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.modificar_btn.setFont(font)
+        self.modificar_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.modificar_btn.setObjectName("modificar_btn")
+        self.horizontalLayout_7.addWidget(self.modificar_btn)
+        self.move_btn = QtWidgets.QPushButton(self.botones_widget)
+        self.move_btn.setMinimumSize(QtCore.QSize(150, 40))
+        self.move_btn.setMaximumSize(QtCore.QSize(150, 40))
+        self.move_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.move_btn.setObjectName("move_btn")
+        self.horizontalLayout_7.addWidget(self.move_btn)
+        self.eliminar_btn = QtWidgets.QPushButton(self.botones_widget)
+        self.eliminar_btn.setMinimumSize(QtCore.QSize(150, 40))
+        self.eliminar_btn.setMaximumSize(QtCore.QSize(150, 40))
+        self.eliminar_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.eliminar_btn.setObjectName("eliminar_btn")
+        self.horizontalLayout_7.addWidget(self.eliminar_btn)
+        self.verticalLayout_2.addWidget(self.botones_widget)
         self.tabla_inventario = QtWidgets.QTableWidget(self.inventario_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.tabla_inventario.setFont(font)
+        self.tabla_inventario.setStyleSheet("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;\n"
+"    color: #333333;\n"
+"}\n"
+"\n"
+"/* Estilo de los encabezados (ID, Nombre, Nueva Columna...) */\n"
+"QHeaderView::section {\n"
+"    background-color: #0056b3; /* Azul oscuro corporativo */\n"
+"    color: #ffffff;\n"
+"    padding: 8px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-right: 1px solid #004085; /* Separador sutil entre columnas */\n"
+"}\n"
+"\n"
+"QHeaderView::section:last {\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"/* Estilo de las celdas individuales */\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario selecciona una fila o celda */\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #e7f1ff; /* Azul muy claro de fondo */\n"
+"    color: #0056b3;            /* Texto en azul oscuro */\n"
+"    font-weight: bold;\n"
+"}")
         self.tabla_inventario.setObjectName("tabla_inventario")
-        self.tabla_inventario.setColumnCount(0)
+        self.tabla_inventario.setColumnCount(8)
         self.tabla_inventario.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(6, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(7, item)
         self.verticalLayout_2.addWidget(self.tabla_inventario)
         self.stackedWidget.addWidget(self.inventario_page)
         self.maquinaria_page = QtWidgets.QWidget()
@@ -241,6 +632,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.maquinaria_page)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.titulo_2 = QtWidgets.QLabel(self.maquinaria_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.titulo_2.setFont(font)
+        self.titulo_2.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
         self.titulo_2.setObjectName("titulo_2")
         self.verticalLayout_3.addWidget(self.titulo_2, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.frame = QtWidgets.QFrame(self.maquinaria_page)
@@ -257,6 +659,25 @@ class Ui_MainWindow(object):
         self.bus_maquina_btn.setSizePolicy(sizePolicy)
         self.bus_maquina_btn.setMinimumSize(QtCore.QSize(150, 0))
         self.bus_maquina_btn.setMaximumSize(QtCore.QSize(150, 50))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        self.bus_maquina_btn.setFont(font)
+        self.bus_maquina_btn.setStyleSheet("QPushButton {\n"
+"    border-radius: 8px;\n"
+"    color: rgb(235, 238, 242);\n"
+"    background-color: rgb(8, 77, 166);\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(3, 90, 166);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    border: none;\n"
+"    color: rgb(8, 77, 166);\n"
+"    background-color: rgb(235, 238, 242);\n"
+"}")
         self.bus_maquina_btn.setObjectName("bus_maquina_btn")
         self.horizontalLayout_4.addWidget(self.bus_maquina_btn)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
@@ -267,18 +688,283 @@ class Ui_MainWindow(object):
         self.lineEdit_2.setSizePolicy(sizePolicy)
         self.lineEdit_2.setMinimumSize(QtCore.QSize(300, 0))
         self.lineEdit_2.setMaximumSize(QtCore.QSize(800, 50))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.lineEdit_2.setFont(font)
+        self.lineEdit_2.setStyleSheet("QLineEdit {\n"
+"    border: 2px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    padding: 6px 12px;\n"
+"    background-color: #ffffff;\n"
+"    color: #333333;\n"
+"    font-size: 13px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario hace clic para escribir */\n"
+"QLineEdit:focus {\n"
+"    border: 2px solid #0b5ed7; /* Azul a juego con tus botones */\n"
+"    background-color: #ffffff;\n"
+"}")
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.horizontalLayout_4.addWidget(self.lineEdit_2)
         self.almacen_box_2 = QtWidgets.QComboBox(self.frame)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.almacen_box_2.setFont(font)
+        self.almacen_box_2.setStyleSheet("QComboBox {\n"
+"    border: 2px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    padding: 6px 12px;\n"
+"    background-color: #ffffff;\n"
+"    color: #333333;\n"
+"    font-size: 13px;\n"
+"    min-width: 6ch;\n"
+"}\n"
+"\n"
+"QComboBox:focus {\n"
+"    border: 2px solid #0b5ed7;\n"
+"}\n"
+"\n"
+"/* Estilo del botón de la flecha */\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 25px;\n"
+"    border-left-width: 0px;\n"
+"    border-top-right-radius: 6px;\n"
+"    border-bottom-right-radius: 6px;\n"
+"}\n"
+"\n"
+"/* Estilo de la lista desplegada */\n"
+"QComboBox QAbstractItemView {\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    background-color: #ffffff;\n"
+"    selection-background-color: #0b5ed7;\n"
+"    selection-color: #ffffff;\n"
+"    padding: 4px;\n"
+"}")
         self.almacen_box_2.setObjectName("almacen_box_2")
         self.horizontalLayout_4.addWidget(self.almacen_box_2)
-        spacerItem1 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem1)
+        spacerItem3 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem3)
         self.verticalLayout_3.addWidget(self.frame, 0, QtCore.Qt.AlignTop)
+        self.botones_widget_2 = QtWidgets.QFrame(self.maquinaria_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        self.botones_widget_2.setFont(font)
+        self.botones_widget_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.botones_widget_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.botones_widget_2.setObjectName("botones_widget_2")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.botones_widget_2)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.recargar_btn_2 = QtWidgets.QPushButton(self.botones_widget_2)
+        self.recargar_btn_2.setMinimumSize(QtCore.QSize(150, 40))
+        self.recargar_btn_2.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.recargar_btn_2.setFont(font)
+        self.recargar_btn_2.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.recargar_btn_2.setObjectName("recargar_btn_2")
+        self.horizontalLayout_8.addWidget(self.recargar_btn_2)
+        self.add_maquina_btn = QtWidgets.QPushButton(self.botones_widget_2)
+        self.add_maquina_btn.setMinimumSize(QtCore.QSize(150, 40))
+        self.add_maquina_btn.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_maquina_btn.setFont(font)
+        self.add_maquina_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.add_maquina_btn.setObjectName("add_maquina_btn")
+        self.horizontalLayout_8.addWidget(self.add_maquina_btn)
+        self.modificar_btn_2 = QtWidgets.QPushButton(self.botones_widget_2)
+        self.modificar_btn_2.setMinimumSize(QtCore.QSize(150, 40))
+        self.modificar_btn_2.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.modificar_btn_2.setFont(font)
+        self.modificar_btn_2.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.modificar_btn_2.setObjectName("modificar_btn_2")
+        self.horizontalLayout_8.addWidget(self.modificar_btn_2)
+        self.move_btn_2 = QtWidgets.QPushButton(self.botones_widget_2)
+        self.move_btn_2.setMinimumSize(QtCore.QSize(150, 40))
+        self.move_btn_2.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.move_btn_2.setFont(font)
+        self.move_btn_2.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.move_btn_2.setObjectName("move_btn_2")
+        self.horizontalLayout_8.addWidget(self.move_btn_2)
+        self.eliminar_btn_2 = QtWidgets.QPushButton(self.botones_widget_2)
+        self.eliminar_btn_2.setMinimumSize(QtCore.QSize(150, 40))
+        self.eliminar_btn_2.setMaximumSize(QtCore.QSize(150, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.eliminar_btn_2.setFont(font)
+        self.eliminar_btn_2.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.eliminar_btn_2.setObjectName("eliminar_btn_2")
+        self.horizontalLayout_8.addWidget(self.eliminar_btn_2)
+        self.verticalLayout_3.addWidget(self.botones_widget_2)
         self.tabla_maquinaria = QtWidgets.QTableWidget(self.maquinaria_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.tabla_maquinaria.setFont(font)
+        self.tabla_maquinaria.setStyleSheet("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;\n"
+"    color: #333333;\n"
+"}\n"
+"\n"
+"/* Estilo de los encabezados (ID, Nombre, Nueva Columna...) */\n"
+"QHeaderView::section {\n"
+"    background-color: #0056b3; /* Azul oscuro corporativo */\n"
+"    color: #ffffff;\n"
+"    padding: 8px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-right: 1px solid #004085; /* Separador sutil entre columnas */\n"
+"}\n"
+"\n"
+"QHeaderView::section:last {\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"/* Estilo de las celdas individuales */\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario selecciona una fila o celda */\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #e7f1ff; /* Azul muy claro de fondo */\n"
+"    color: #0056b3;            /* Texto en azul oscuro */\n"
+"    font-weight: bold;\n"
+"}")
         self.tabla_maquinaria.setObjectName("tabla_maquinaria")
-        self.tabla_maquinaria.setColumnCount(0)
+        self.tabla_maquinaria.setColumnCount(6)
         self.tabla_maquinaria.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_maquinaria.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_maquinaria.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_maquinaria.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_maquinaria.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_maquinaria.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_maquinaria.setHorizontalHeaderItem(5, item)
         self.verticalLayout_3.addWidget(self.tabla_maquinaria)
         self.stackedWidget.addWidget(self.maquinaria_page)
         self.proyecto_page = QtWidgets.QWidget()
@@ -286,6 +972,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.proyecto_page)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.titulo_3 = QtWidgets.QLabel(self.proyecto_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.titulo_3.setFont(font)
+        self.titulo_3.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
         self.titulo_3.setObjectName("titulo_3")
         self.verticalLayout_5.addWidget(self.titulo_3, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.frame_3 = QtWidgets.QFrame(self.proyecto_page)
@@ -294,24 +991,55 @@ class Ui_MainWindow(object):
         self.frame_3.setObjectName("frame_3")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frame_3)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        spacerItem2 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem2)
-        self.frame_4 = QtWidgets.QFrame(self.frame_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        self.contenedor_solicitudes_widget = QtWidgets.QFrame(self.frame_3)
+        self.contenedor_solicitudes_widget.setStyleSheet("#contenedor_solicitudes_widget{\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #e1e4e8;\n"
+"    border-radius: 12px;\n"
+"}\n"
+"\n"
+"")
+        self.contenedor_solicitudes_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.contenedor_solicitudes_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.contenedor_solicitudes_widget.setObjectName("contenedor_solicitudes_widget")
+        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.contenedor_solicitudes_widget)
+        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        spacerItem4 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem4)
+        self.solicitud_widget = QtWidgets.QFrame(self.contenedor_solicitudes_widget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
-        self.frame_4.setSizePolicy(sizePolicy)
-        self.frame_4.setMaximumSize(QtCore.QSize(250, 16777215))
-        self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_4.setObjectName("frame_4")
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_4)
+        sizePolicy.setHeightForWidth(self.solicitud_widget.sizePolicy().hasHeightForWidth())
+        self.solicitud_widget.setSizePolicy(sizePolicy)
+        self.solicitud_widget.setMaximumSize(QtCore.QSize(250, 16777215))
+        self.solicitud_widget.setStyleSheet("")
+        self.solicitud_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.solicitud_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.solicitud_widget.setObjectName("solicitud_widget")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.solicitud_widget)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.subtitulo = QtWidgets.QLabel(self.frame_4)
+        self.subtitulo = QtWidgets.QLabel(self.solicitud_widget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.subtitulo.sizePolicy().hasHeightForWidth())
+        self.subtitulo.setSizePolicy(sizePolicy)
+        self.subtitulo.setMaximumSize(QtCore.QSize(200, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.subtitulo.setFont(font)
+        self.subtitulo.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
         self.subtitulo.setObjectName("subtitulo")
-        self.verticalLayout_4.addWidget(self.subtitulo, 0, QtCore.Qt.AlignHCenter)
-        self.sol_materiales_btn = QtWidgets.QPushButton(self.frame_4)
+        self.verticalLayout_4.addWidget(self.subtitulo, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.sol_materiales_btn = QtWidgets.QPushButton(self.solicitud_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
@@ -319,33 +1047,253 @@ class Ui_MainWindow(object):
         self.sol_materiales_btn.setSizePolicy(sizePolicy)
         self.sol_materiales_btn.setMinimumSize(QtCore.QSize(100, 100))
         self.sol_materiales_btn.setMaximumSize(QtCore.QSize(250, 250))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.sol_materiales_btn.setFont(font)
+        self.sol_materiales_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
         self.sol_materiales_btn.setObjectName("sol_materiales_btn")
         self.verticalLayout_4.addWidget(self.sol_materiales_btn)
-        self.sol_maquinaria_btn = QtWidgets.QPushButton(self.frame_4)
+        self.sol_maquinaria_btn = QtWidgets.QPushButton(self.solicitud_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sol_maquinaria_btn.sizePolicy().hasHeightForWidth())
         self.sol_maquinaria_btn.setSizePolicy(sizePolicy)
-        self.sol_maquinaria_btn.setMinimumSize(QtCore.QSize(100, 100))
+        self.sol_maquinaria_btn.setMinimumSize(QtCore.QSize(120, 100))
         self.sol_maquinaria_btn.setMaximumSize(QtCore.QSize(250, 250))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.sol_maquinaria_btn.setFont(font)
+        self.sol_maquinaria_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
         self.sol_maquinaria_btn.setObjectName("sol_maquinaria_btn")
         self.verticalLayout_4.addWidget(self.sol_maquinaria_btn)
-        self.horizontalLayout_5.addWidget(self.frame_4)
-        spacerItem3 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem3)
-        self.tabla_miembros = QtWidgets.QTableWidget(self.frame_3)
+        self.pushButton = QtWidgets.QPushButton(self.solicitud_widget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy)
+        self.pushButton.setMinimumSize(QtCore.QSize(120, 100))
+        self.pushButton.setMaximumSize(QtCore.QSize(250, 250))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.pushButton.setObjectName("pushButton")
+        self.verticalLayout_4.addWidget(self.pushButton)
+        self.horizontalLayout_12.addWidget(self.solicitud_widget)
+        spacerItem5 = QtWidgets.QSpacerItem(0, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem5)
+        self.horizontalLayout_5.addWidget(self.contenedor_solicitudes_widget)
+        self.miembros_widget = QtWidgets.QFrame(self.frame_3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.miembros_widget.sizePolicy().hasHeightForWidth())
+        self.miembros_widget.setSizePolicy(sizePolicy)
+        self.miembros_widget.setMaximumSize(QtCore.QSize(600, 16777215))
+        self.miembros_widget.setStyleSheet("#miembros_widget {\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #e1e4e8;\n"
+"    border-radius: 12px;\n"
+"}")
+        self.miembros_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.miembros_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.miembros_widget.setObjectName("miembros_widget")
+        self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.miembros_widget)
+        self.verticalLayout_10.setObjectName("verticalLayout_10")
+        self.label = QtWidgets.QLabel(self.miembros_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
+        self.label.setObjectName("label")
+        self.verticalLayout_10.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
+        self.tabla_miembros = QtWidgets.QTableWidget(self.miembros_widget)
         self.tabla_miembros.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tabla_miembros.sizePolicy().hasHeightForWidth())
         self.tabla_miembros.setSizePolicy(sizePolicy)
-        self.tabla_miembros.setMaximumSize(QtCore.QSize(1000, 16777215))
+        self.tabla_miembros.setMaximumSize(QtCore.QSize(600, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.tabla_miembros.setFont(font)
+        self.tabla_miembros.setStyleSheet("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;\n"
+"    color: #333333;\n"
+"}\n"
+"\n"
+"/* Estilo de los encabezados (ID, Nombre, Nueva Columna...) */\n"
+"QHeaderView::section {\n"
+"    background-color: #0056b3; /* Azul oscuro corporativo */\n"
+"    color: #ffffff;\n"
+"    padding: 8px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-right: 1px solid #004085; /* Separador sutil entre columnas */\n"
+"}\n"
+"\n"
+"QHeaderView::section:last {\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"/* Estilo de las celdas individuales */\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario selecciona una fila o celda */\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #e7f1ff; /* Azul muy claro de fondo */\n"
+"    color: #0056b3;            /* Texto en azul oscuro */\n"
+"    font-weight: bold;\n"
+"}")
         self.tabla_miembros.setObjectName("tabla_miembros")
-        self.tabla_miembros.setColumnCount(0)
+        self.tabla_miembros.setColumnCount(4)
         self.tabla_miembros.setRowCount(0)
-        self.horizontalLayout_5.addWidget(self.tabla_miembros)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_miembros.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_miembros.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_miembros.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tabla_miembros.setHorizontalHeaderItem(3, item)
+        self.verticalLayout_10.addWidget(self.tabla_miembros)
+        self.miembros_btn_widget = QtWidgets.QFrame(self.miembros_widget)
+        self.miembros_btn_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.miembros_btn_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.miembros_btn_widget.setObjectName("miembros_btn_widget")
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.miembros_btn_widget)
+        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        self.add_user_btn_2 = QtWidgets.QPushButton(self.miembros_btn_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_user_btn_2.setFont(font)
+        self.add_user_btn_2.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.add_user_btn_2.setObjectName("add_user_btn_2")
+        self.horizontalLayout_10.addWidget(self.add_user_btn_2)
+        self.remove_user_btn_2 = QtWidgets.QPushButton(self.miembros_btn_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setBold(True)
+        font.setWeight(75)
+        self.remove_user_btn_2.setFont(font)
+        self.remove_user_btn_2.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.remove_user_btn_2.setObjectName("remove_user_btn_2")
+        self.horizontalLayout_10.addWidget(self.remove_user_btn_2)
+        self.verticalLayout_10.addWidget(self.miembros_btn_widget)
+        self.horizontalLayout_5.addWidget(self.miembros_widget)
         self.verticalLayout_5.addWidget(self.frame_3)
         self.stackedWidget.addWidget(self.proyecto_page)
         self.panel_page = QtWidgets.QWidget()
@@ -353,11 +1301,68 @@ class Ui_MainWindow(object):
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.panel_page)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.titulo_4 = QtWidgets.QLabel(self.panel_page)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.titulo_4.setFont(font)
+        self.titulo_4.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
         self.titulo_4.setObjectName("titulo_4")
         self.verticalLayout_9.addWidget(self.titulo_4, 0, QtCore.Qt.AlignHCenter)
-        self.lista_panel = QtWidgets.QListWidget(self.panel_page)
-        self.lista_panel.setObjectName("lista_panel")
-        self.verticalLayout_9.addWidget(self.lista_panel)
+        self.tableWidget = QtWidgets.QTableWidget(self.panel_page)
+        self.tableWidget.setStyleSheet("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;\n"
+"    color: #333333;\n"
+"}\n"
+"\n"
+"/* Estilo de los encabezados (ID, Nombre, Nueva Columna...) */\n"
+"QHeaderView::section {\n"
+"    background-color: #0056b3; /* Azul oscuro corporativo */\n"
+"    color: #ffffff;\n"
+"    padding: 8px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-right: 1px solid #004085; /* Separador sutil entre columnas */\n"
+"}\n"
+"\n"
+"QHeaderView::section:last {\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"/* Estilo de las celdas individuales */\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario selecciona una fila o celda */\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #e7f1ff; /* Azul muy claro de fondo */\n"
+"    color: #0056b3;            /* Texto en azul oscuro */\n"
+"    font-weight: bold;\n"
+"}")
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(5)
+        self.tableWidget.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(4, item)
+        self.verticalLayout_9.addWidget(self.tableWidget)
         self.stackedWidget.addWidget(self.panel_page)
         self.admin_page = QtWidgets.QWidget()
         self.admin_page.setObjectName("admin_page")
@@ -366,13 +1371,14 @@ class Ui_MainWindow(object):
         self.title = QtWidgets.QLabel(self.admin_page)
         font = QtGui.QFont()
         font.setFamily("Open Sans")
-        font.setPointSize(14)
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.title.setFont(font)
         self.title.setStyleSheet("QLabel {\n"
-"    \n"
-"    color: rgb(255, 255, 255);\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
 "}")
         self.title.setObjectName("title")
         self.verticalLayout_6.addWidget(self.title, 0, QtCore.Qt.AlignHCenter)
@@ -382,39 +1388,441 @@ class Ui_MainWindow(object):
         self.frame_7.setObjectName("frame_7")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.frame_7)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.frame_6 = QtWidgets.QFrame(self.frame_7)
-        self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_6.setObjectName("frame_6")
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_6)
+        self.frame_4 = QtWidgets.QFrame(self.frame_7)
+        self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_4.setObjectName("frame_4")
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.frame_4)
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.copias_widget = QtWidgets.QFrame(self.frame_4)
+        self.copias_widget.setStyleSheet("#copias_widget {\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #e1e4e8;\n"
+"    border-radius: 12px;\n"
+"}")
+        self.copias_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.copias_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.copias_widget.setObjectName("copias_widget")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.copias_widget)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.subtitulo_3 = QtWidgets.QLabel(self.frame_6)
+        self.subtitulo_3 = QtWidgets.QLabel(self.copias_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.subtitulo_3.setFont(font)
+        self.subtitulo_3.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
         self.subtitulo_3.setObjectName("subtitulo_3")
         self.verticalLayout_7.addWidget(self.subtitulo_3, 0, QtCore.Qt.AlignHCenter)
-        self.tabla_copias = QtWidgets.QTableWidget(self.frame_6)
+        self.tabla_copias = QtWidgets.QTableWidget(self.copias_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.tabla_copias.setFont(font)
+        self.tabla_copias.setStyleSheet("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;\n"
+"    color: #333333;\n"
+"}\n"
+"\n"
+"/* Estilo de los encabezados (ID, Nombre, Nueva Columna...) */\n"
+"QHeaderView::section {\n"
+"    background-color: #0056b3; /* Azul oscuro corporativo */\n"
+"    color: #ffffff;\n"
+"    padding: 8px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-right: 1px solid #004085; /* Separador sutil entre columnas */\n"
+"}\n"
+"\n"
+"QHeaderView::section:last {\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"/* Estilo de las celdas individuales */\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario selecciona una fila o celda */\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #e7f1ff; /* Azul muy claro de fondo */\n"
+"    color: #0056b3;            /* Texto en azul oscuro */\n"
+"    font-weight: bold;\n"
+"}")
         self.tabla_copias.setObjectName("tabla_copias")
         self.tabla_copias.setColumnCount(0)
         self.tabla_copias.setRowCount(0)
         self.verticalLayout_7.addWidget(self.tabla_copias)
-        self.copia_sesguridad_btn = QtWidgets.QPushButton(self.frame_6)
-        self.copia_sesguridad_btn.setObjectName("copia_sesguridad_btn")
-        self.verticalLayout_7.addWidget(self.copia_sesguridad_btn)
-        self.horizontalLayout_6.addWidget(self.frame_6)
+        self.copias_btn_widget = QtWidgets.QFrame(self.copias_widget)
+        self.copias_btn_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.copias_btn_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.copias_btn_widget.setObjectName("copias_btn_widget")
+        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.copias_btn_widget)
+        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
+        self.add_copia_btn = QtWidgets.QPushButton(self.copias_btn_widget)
+        self.add_copia_btn.setMinimumSize(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_copia_btn.setFont(font)
+        self.add_copia_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.add_copia_btn.setObjectName("add_copia_btn")
+        self.horizontalLayout_11.addWidget(self.add_copia_btn)
+        self.delete_copia_btn = QtWidgets.QPushButton(self.copias_btn_widget)
+        self.delete_copia_btn.setMinimumSize(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.delete_copia_btn.setFont(font)
+        self.delete_copia_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.delete_copia_btn.setObjectName("delete_copia_btn")
+        self.horizontalLayout_11.addWidget(self.delete_copia_btn)
+        self.verticalLayout_7.addWidget(self.copias_btn_widget)
+        self.verticalLayout_11.addWidget(self.copias_widget)
+        self.usuarios_widget = QtWidgets.QFrame(self.frame_4)
+        self.usuarios_widget.setStyleSheet("#usuarios_widget {\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #e1e4e8;\n"
+"    border-radius: 12px;\n"
+"}")
+        self.usuarios_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.usuarios_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.usuarios_widget.setObjectName("usuarios_widget")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.usuarios_widget)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.label_2 = QtWidgets.QLabel(self.usuarios_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_12.addWidget(self.label_2, 0, QtCore.Qt.AlignHCenter)
+        self.tableWidget_3 = QtWidgets.QTableWidget(self.usuarios_widget)
+        self.tableWidget_3.setStyleSheet("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;\n"
+"    color: #333333;\n"
+"}\n"
+"\n"
+"/* Estilo de los encabezados (ID, Nombre, Nueva Columna...) */\n"
+"QHeaderView::section {\n"
+"    background-color: #0056b3; /* Azul oscuro corporativo */\n"
+"    color: #ffffff;\n"
+"    padding: 8px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-right: 1px solid #004085; /* Separador sutil entre columnas */\n"
+"}\n"
+"\n"
+"QHeaderView::section:last {\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"/* Estilo de las celdas individuales */\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario selecciona una fila o celda */\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #e7f1ff; /* Azul muy claro de fondo */\n"
+"    color: #0056b3;            /* Texto en azul oscuro */\n"
+"    font-weight: bold;\n"
+"}")
+        self.tableWidget_3.setObjectName("tableWidget_3")
+        self.tableWidget_3.setColumnCount(0)
+        self.tableWidget_3.setRowCount(0)
+        self.verticalLayout_12.addWidget(self.tableWidget_3)
+        self.usuarios_btn_widget = QtWidgets.QFrame(self.usuarios_widget)
+        self.usuarios_btn_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.usuarios_btn_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.usuarios_btn_widget.setObjectName("usuarios_btn_widget")
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.usuarios_btn_widget)
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.add_user_btn = QtWidgets.QPushButton(self.usuarios_btn_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_user_btn.setFont(font)
+        self.add_user_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.add_user_btn.setObjectName("add_user_btn")
+        self.horizontalLayout_9.addWidget(self.add_user_btn)
+        self.modificar_btn_3 = QtWidgets.QPushButton(self.usuarios_btn_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.modificar_btn_3.setFont(font)
+        self.modificar_btn_3.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.modificar_btn_3.setObjectName("modificar_btn_3")
+        self.horizontalLayout_9.addWidget(self.modificar_btn_3)
+        self.remove_user_btn = QtWidgets.QPushButton(self.usuarios_btn_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.remove_user_btn.setFont(font)
+        self.remove_user_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.remove_user_btn.setObjectName("remove_user_btn")
+        self.horizontalLayout_9.addWidget(self.remove_user_btn)
+        self.verticalLayout_12.addWidget(self.usuarios_btn_widget)
+        self.verticalLayout_11.addWidget(self.usuarios_widget)
+        self.horizontalLayout_6.addWidget(self.frame_4)
         self.frame_5 = QtWidgets.QFrame(self.frame_7)
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame_5)
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frame_5)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.panel_widget = QtWidgets.QFrame(self.frame_5)
+        self.panel_widget.setStyleSheet("#panel_widget {\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #e1e4e8;\n"
+"    border-radius: 12px;\n"
+"}")
+        self.panel_widget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.panel_widget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.panel_widget.setObjectName("panel_widget")
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.panel_widget)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.subtitulo_2 = QtWidgets.QLabel(self.frame_5)
+        self.subtitulo_2 = QtWidgets.QLabel(self.panel_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.subtitulo_2.setFont(font)
+        self.subtitulo_2.setStyleSheet("QLabel {\n"
+"    color: #0056b3;             /* Azul a juego con tus botones */\n"
+"    font-weight: bold;\n"
+"    padding-bottom: 5px;\n"
+"}")
         self.subtitulo_2.setObjectName("subtitulo_2")
         self.verticalLayout_8.addWidget(self.subtitulo_2, 0, QtCore.Qt.AlignHCenter)
-        self.lista_panel_2 = QtWidgets.QListView(self.frame_5)
-        self.lista_panel_2.setObjectName("lista_panel_2")
-        self.verticalLayout_8.addWidget(self.lista_panel_2)
-        self.add_panel_btn = QtWidgets.QPushButton(self.frame_5)
+        self.tableWidget_2 = QtWidgets.QTableWidget(self.panel_widget)
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        self.tableWidget_2.setFont(font)
+        self.tableWidget_2.setStyleSheet("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    gridline-color: #e9ecef; /* Color de las líneas de la cuadrícula */\n"
+"    border: 1px solid #ced4da;\n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;\n"
+"    color: #333333;\n"
+"}\n"
+"\n"
+"/* Estilo de los encabezados (ID, Nombre, Nueva Columna...) */\n"
+"QHeaderView::section {\n"
+"    background-color: #0056b3; /* Azul oscuro corporativo */\n"
+"    color: #ffffff;\n"
+"    padding: 8px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-right: 1px solid #004085; /* Separador sutil entre columnas */\n"
+"}\n"
+"\n"
+"QHeaderView::section:last {\n"
+"    border-right: none;\n"
+"}\n"
+"\n"
+"/* Estilo de las celdas individuales */\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"/* Cuando el usuario selecciona una fila o celda */\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #e7f1ff; /* Azul muy claro de fondo */\n"
+"    color: #0056b3;            /* Texto en azul oscuro */\n"
+"    font-weight: bold;\n"
+"}")
+        self.tableWidget_2.setObjectName("tableWidget_2")
+        self.tableWidget_2.setColumnCount(0)
+        self.tableWidget_2.setRowCount(0)
+        self.verticalLayout_8.addWidget(self.tableWidget_2)
+        self.add_panel_btn = QtWidgets.QPushButton(self.panel_widget)
+        self.add_panel_btn.setMinimumSize(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.add_panel_btn.setFont(font)
+        self.add_panel_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
         self.add_panel_btn.setObjectName("add_panel_btn")
         self.verticalLayout_8.addWidget(self.add_panel_btn)
+        self.verticalLayout_13.addWidget(self.panel_widget)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy)
+        self.pushButton_2.setMaximumSize(QtCore.QSize(16777215, 80))
+        font = QtGui.QFont()
+        font.setFamily("Open Sans")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setStyleSheet("QPushButton {\n"
+"    background-color: #0284c7; /* Azul moderno, menos chillón */\n"
+"    color: #ffffff;\n"
+"    font-size: 13px;\n"
+"    font-weight: bold;\n"
+"    border: none;\n"
+"    border-radius: 6px; /* Bordes suavizados */\n"
+"    padding: 8px 16px;\n"
+"}\n"
+"\n"
+"/* Al pasar el ratón por encima */\n"
+"QPushButton:hover {\n"
+"    background-color: #0369a1; /* Un azul un poco más oscuro */\n"
+"}\n"
+"\n"
+"/* Al hacer clic */\n"
+"QPushButton:pressed {\n"
+"    background-color: #075985; /* Más oscuro para simular hundimiento */\n"
+"}")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout_13.addWidget(self.pushButton_2)
         self.horizontalLayout_6.addWidget(self.frame_5)
         self.verticalLayout_6.addWidget(self.frame_7)
         self.stackedWidget.addWidget(self.admin_page)
@@ -426,7 +1834,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -434,18 +1842,85 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.titulo.setText(_translate("MainWindow", "Inventario"))
         self.bus_inventario_btn.setText(_translate("MainWindow", "Buscar en inventario"))
+        self.recargar_btn.setText(_translate("MainWindow", "Recargar"))
+        self.add_material_btn.setText(_translate("MainWindow", "Añadir material"))
+        self.add_lote_btn.setText(_translate("MainWindow", "Añadir lote"))
+        self.modificar_btn.setText(_translate("MainWindow", "Modificar"))
+        self.move_btn.setText(_translate("MainWindow", "Mover"))
+        self.eliminar_btn.setText(_translate("MainWindow", "Eliminar"))
+        item = self.tabla_inventario.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "ID"))
+        item = self.tabla_inventario.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Nombre"))
+        item = self.tabla_inventario.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Nueva columna"))
+        item = self.tabla_inventario.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Riesgo"))
+        item = self.tabla_inventario.horizontalHeaderItem(4)
+        item.setText(_translate("MainWindow", "Fórmula"))
+        item = self.tabla_inventario.horizontalHeaderItem(5)
+        item.setText(_translate("MainWindow", "Unidad de medida"))
+        item = self.tabla_inventario.horizontalHeaderItem(6)
+        item.setText(_translate("MainWindow", "Cantidad"))
+        item = self.tabla_inventario.horizontalHeaderItem(7)
+        item.setText(_translate("MainWindow", "F Caducidad"))
         self.titulo_2.setText(_translate("MainWindow", "Maquinaria"))
         self.bus_maquina_btn.setText(_translate("MainWindow", "Buscar en maquinaria"))
+        self.recargar_btn_2.setText(_translate("MainWindow", "Recargar"))
+        self.add_maquina_btn.setText(_translate("MainWindow", "Añadir máquina"))
+        self.modificar_btn_2.setText(_translate("MainWindow", "Modificar"))
+        self.move_btn_2.setText(_translate("MainWindow", "Mover"))
+        self.eliminar_btn_2.setText(_translate("MainWindow", "Eliminar"))
+        item = self.tabla_maquinaria.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "ID"))
+        item = self.tabla_maquinaria.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Nombre"))
+        item = self.tabla_maquinaria.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Estado"))
+        item = self.tabla_maquinaria.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Riesgo"))
+        item = self.tabla_maquinaria.horizontalHeaderItem(4)
+        item.setText(_translate("MainWindow", "Sig. Revisión"))
+        item = self.tabla_maquinaria.horizontalHeaderItem(5)
+        item.setText(_translate("MainWindow", "Últ. Revisión"))
         self.titulo_3.setText(_translate("MainWindow", "Proyecto"))
         self.subtitulo.setText(_translate("MainWindow", "Solicitud de assets:"))
         self.sol_materiales_btn.setText(_translate("MainWindow", "Solicitar materiales"))
         self.sol_maquinaria_btn.setText(_translate("MainWindow", "Solicitar maquinaria"))
+        self.pushButton.setText(_translate("MainWindow", "Finalizar uso (maquinaria)"))
+        self.label.setText(_translate("MainWindow", "Miembros del proyecto"))
+        item = self.tabla_miembros.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "ID"))
+        item = self.tabla_miembros.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Nombre"))
+        item = self.tabla_miembros.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "DNI"))
+        item = self.tabla_miembros.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Puesto"))
+        self.add_user_btn_2.setText(_translate("MainWindow", "Añadir usuario"))
+        self.remove_user_btn_2.setText(_translate("MainWindow", "Eliminar usuario"))
         self.titulo_4.setText(_translate("MainWindow", "Panel colaborativo"))
+        item = self.tableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "ID"))
+        item = self.tableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Título"))
+        item = self.tableWidget.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Autor"))
+        item = self.tableWidget.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Likes"))
+        item = self.tableWidget.horizontalHeaderItem(4)
+        item.setText(_translate("MainWindow", "Dislikes"))
         self.title.setText(_translate("MainWindow", "Administración"))
         self.subtitulo_3.setText(_translate("MainWindow", "Copias de seguridad"))
-        self.copia_sesguridad_btn.setText(_translate("MainWindow", "Crear copia de seguridad"))
+        self.add_copia_btn.setText(_translate("MainWindow", "Crear copia de seguridad"))
+        self.delete_copia_btn.setText(_translate("MainWindow", "Eliminar copia de seguridad"))
+        self.label_2.setText(_translate("MainWindow", "Usuarios"))
+        self.add_user_btn.setText(_translate("MainWindow", "Añadir"))
+        self.modificar_btn_3.setText(_translate("MainWindow", "Modificar"))
+        self.remove_user_btn.setText(_translate("MainWindow", "Eliminar"))
         self.subtitulo_2.setText(_translate("MainWindow", "Entradas del panel colaborativo"))
         self.add_panel_btn.setText(_translate("MainWindow", "Añadir entrada al panel"))
+        self.pushButton_2.setText(_translate("MainWindow", "Acceso a logs"))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,55 @@
+-ES MUY IMPORTANTE QUE UN USUARIO NO PUEDA ACCEDER O VISUALIZAR COSAS A LAS QUE NO ESTÁ AUTORIZADO
+-SE DEBE APLICAR self.tabla_inventario.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) O EL COMANDO CORRECTO A TODAS LAS TABLAS PARA QUE EL CABECERO SEA PROPORCIONAL AL TAMAÑO
+-TODOS LOS DATOS SE DEBEN AJUSTAR A LAS COLUMNAS DE LAS TABLAS A MENOS QUE NO TENGAN COLUMNAS POR LO QUE SE DEJA A INTERPRETACION
+-LAS VENTANAS DEDICADAS AL TEXTO DE LAS ENTRADAS DEL PANEL, LOGS Y AYUDA (A MAYORES DE TODAS LAS MINI VENTANAS AUXILIARES) DEBEN SER CREADAS
+
+
+INVENTARIO (ACCESIBLE A: reponedores, administradores):
+-Boton buscar en inventario: Busca filtrando por nombre, si se ha introducido en el line edit, y por almacen, si se ha introducido en el almacen box.
+-Almacen box: debe contener todos los almacenes disponibles como opciones al desplegarse
+-Recargar: actualiza el inventario
+-Añadir material: añade un tipo de material nuevo a la base de datos, el ID se autocompleta al ser autoincremental. El resto de datos necesarios para
+la db se piden.
+-Añadir lote: añade un lote de un material existente, pide en que almacen va a almacenarse (con un desplegable como almacenbox, mismo estilo css), el id del material
+(con otro desplegable que muestre los materiales que existen en la base de datos) y el número de lote que se introduce manualmente.
+-Modificar: permite modificar datos de los lotes para reducir su cantidad por ejemplo. Las cantidades no pueden ser negativas, si llega a 0 el lote se elimina.
+-Mover: permite mover un lote de un almacen a otro, de nuevo esto se hace mediante boxes (desplegables) para evitar que se introduzcan datos no almacenados.
+-Eliminar: permite eliminar lotes o materiales mediante el ID.
+
+
+MAQUINARIA (ACCESIBLE A: técnicos, administradores):
+-Boton buscar en maquinaria, y recargar mismo funcionamiento que para inventario pero aplicado a la maquinaria.
+-Añadir máquina: Añade una nueva máquina. El ID se autocompleta igual que en el inventario. El resto de datos necesarios para la db se pide. El almacen donde 
+se va a almacenar se introuce mediante un desplegable (como almacenbox).
+-Modificar: permite modificar datos de una máquina como su nombre u otras cosas almacenadas en la base de datos. Esto se utiliza principalmente para actualizar las fechas
+de revisión y los estados.
+-Mover: sirve para mover una máquina via su id (introducido desde un desplegable que muestra todos los id almacenados) a un almacen nuevo (de nuevo mediante un desplegable).
+-Eliminar: elimina una maquina de la base de datos.
+
+
+PROYECTOS (ACCESIBLE A: investigadores, directores de proyecto, auditores):
+LA SOLICITUD DE ASSETS SOLO DEBE ESTAR HABILITADA PARA INVESTIGADORES Y DIRECTORES
+-Botones de solicitud (maquinaria/materiales): Al pulsarlos se abre una ventana que te deja seleccionar que material/maquinaria necesitas igual a la tabla de los apartados de maquinaria
+o materiales. En el caso de materiales también debe dejarte solicitar una cantidad menor a la cantidad de material disponible y debe descontarse de la base de datos, los materiales se ven 
+como un solo grupo aunque consistan en varios lotes almacenados en diferentes almacenes.
+-Boton de finalizar uso de maquinaria: Si alguna máquina está en uso permite seleccionar que máquina quiere liberarse. Si no hay ninguna muestra un warning de que el usuario no está utilizando
+máquinas en ese momento
+LA VISUALIZACION DE LOS MIEMBROS DEL PROYECTO EN LA TABLA SOLO DEBE ESTAR HABILITADA A AUDITORES Y DIRECTORES
+-La tabla_miembros mostrará los diferentes componentes de un mismo proyecto
+
+LA MODIFICACION DE USUARIOS DENTRO DE UN PROYECTO (AÑADIR USUARIO O REMOVERLO) ESTÁ LIMITADA A LOS DIRECTORES DE PROYECTO
+-Añadir usuario: Pide el ID de usuario para añadirlo y da a elegir el añadirlo como auditor o investigador
+-Eliminar usuario: elimina a un usuario del proyecto actual
+
+PANEL COLABORATIVO (ACCESIBLE A: investigadores, directores y administradores):
+-La tabla debe mostrar las entradas del panel colaborativo, al hacer click en una entrada se abrirá una ventana que mostrará el contenido del estudio como texto plano
+
+ADMINISTRACION (ACCESIBLE A: administradores):
+-Cada apartado: cada botón hace lo que corresponde por texto
+-Botón de logs: Abre los logs en una ventana nueva, debe permitir filtrar por diferentes filtros como fecha o tipo de evento. Todo esto debe darse en desplegables para evitar inputs incorrectos.
+
+AYUDA (ACCESIBLE A: todo el mundo):
+-Muestra una stacked window con texto explicando de manera ligera el funcionamiento de la app
+
+SALIR (ACCESIBLE A: todo el mundo):
+-Devuelve a la pantalla de login
